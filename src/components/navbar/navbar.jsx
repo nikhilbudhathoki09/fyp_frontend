@@ -5,7 +5,7 @@ export default function Navbar() {
     <div className=" bg-primary text-white  py-6">
       <div className="layout flex flex-row justify-between items-center">
         <div className="flex flex-row items-center gap-20">
-          <p>Logo logooo</p>
+          <img src="/logo.png" alt="logo" className="w-20" />
           <Button
             text="Become a Professional"
             className="bg-tertiary rounded-full  px-5 py-3 text-sm"

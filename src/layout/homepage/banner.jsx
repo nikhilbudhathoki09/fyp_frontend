@@ -30,7 +30,7 @@ export default function Banner() {
           </div>
         </div>
         <div className="w-[50%] flex items-center justify-center">
-          <img src="https://via.placeholder.com/150" alt="" />
+          <img src="/Frame.png" alt="" />
         </div>
       </div>
     </div>
