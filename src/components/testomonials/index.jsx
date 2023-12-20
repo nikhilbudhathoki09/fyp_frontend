@@ -1,3 +1,5 @@
+import TestominalCard from "./testominal-card";
+
 export default function TestomonialsSection() {
   const testomonials = [
     {
@@ -48,26 +50,7 @@ export default function TestomonialsSection() {
         <h3 className="text-2xl font-semibold text-center">Testomonials</h3>
         <div className="grid grid-cols-3 items-center gap-6">
           {testomonials.map((data, i) => (
-            <div key={i} className="space-y-4">
-              <div className="bg-white rounded-lg shadow-lg max-w-sm  h-52 overflow-hidden p-5 ">
-                <p className="line-clamp-[7]">
-                  {data.testimonial}
-                </p>
-              </div>
-              <div className="flex items-start pl-4 space-x-3">
-                {/* overlay */}
-                <div className=" rounded-full p-1 border-2 border-[#7950F2] w-fit">
-                  <img
-                    src={data.image || "/nopfp.png"}
-                    className="w-14 hp-14 rounded-full"
-                  />
-                </div>
-                <div className="pt-2">
-                  <p className="font-semibold">{data.name}</p>
-                  <span className="text-xs">@{data.name}</span>
-                </div>
-              </div>
-            </div>
+            <TestominalCard key={i} {...data} />
           ))}
         </div>
       </div>
