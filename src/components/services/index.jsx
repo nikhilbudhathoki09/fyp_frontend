@@ -5,7 +5,7 @@ export default function ServicesSection() {
       <h3 className="text-3xl font-semibold">Services</h3>
       <img src="/storke.png" className="absolute top-12" />
 
-      <div className="grid w-full items-center justify-center grid-cols-4 gap-4 p-10 bg-secondary rounded-md">
+      <div className="grid w-full items-center justify-center grid-cols-4 gap-4 p-10 bg-white-bg rounded-md">
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}

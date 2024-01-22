@@ -5,9 +5,11 @@ export default {
     extend: {
       colors: {
         primary: "#33216f",
-        secondary: "#f0f0f0",
+        "white-bg": "#f0f0f0",
         button: "#7950f2",
         tertiary: "#433681",
+        "text-color": "#000",
+        "text-color-secondary": "#66697E",
       },
     },
   },
