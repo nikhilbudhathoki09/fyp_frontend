@@ -15,7 +15,7 @@ export default function ServicesSection() {
               <MdPlumbing className="text-primary" size={35} />
             </div>
             <p key={i} className="text-sm">
-              Home services {i + 1}
+              Home services
             </p>
           </div>
         ))}
