@@ -1,6 +1,4 @@
-import Footer from "../../components/footer/footer";
 import RegisterFrom from "../../components/forms/register-from";
-import Navbar from "../../components/navbar/navbar";
 
 export default function Register() {
   return (
@@ -14,7 +12,6 @@ export default function Register() {
           backgroundPosition: "center",
         }}
       >
-        <Navbar />
       </div>
 
       <div className="layout flex  justify-center">
@@ -22,7 +19,6 @@ export default function Register() {
           <RegisterFrom />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

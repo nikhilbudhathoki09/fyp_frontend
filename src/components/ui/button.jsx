@@ -6,6 +6,7 @@ export default function Button({
   className,
   text,
   loading,
+  icon,
   disabled,
   type,
   onClick,
@@ -14,12 +15,23 @@ export default function Button({
     <div>
       <button
         type={type}
-        className={cn("flex items-center space-x-2 text-sm", className)}
+        className={cn(
+          "flex items-center space-x-2 text-sm relative",
+          className
+        )}
         disabled={disabled || loading}
         onClick={onClick}
       >
-        {text && <span className={loading ? "animate-pulse" : ""}>{text}</span>}
+        {text && (
+          <span className="flex items-center gap-3">
+            {text}
+            {icon}
+          </span>
+        )}
         {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+        {/* <span className="absolute inset-y-0 right-0 pl-3  text-primary flex items-center pointer-events-none">
+          {icon && icon}
+        </span> */}
       </button>
     </div>
   );
@@ -32,4 +44,5 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   type: PropTypes.oneOf(["button", "submit", "reset"]).isRequired,
   onClick: PropTypes.func,
+  icon: PropTypes.elementType,
 };

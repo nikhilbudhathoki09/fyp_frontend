@@ -9,7 +9,7 @@ import { FaMapLocationDot } from "react-icons/fa6";
 export default function RegisterFrom() {
   return (
     <div className="px-12 py-8 rounded-lg shadow-xl bg-white">
-      <h3 className="text-text-color text-4xl font-semibold">Registser</h3>
+      <h3 className="text-text-color text-4xl font-semibold">Register</h3>
       <p className="text-base mt-3 text-text-color-secondary ">
         I already have an account?
         <a className="text-primary underline ml-2 font-semibold" href="/login">
@@ -51,7 +51,12 @@ export default function RegisterFrom() {
         <Input
           type="password"
           icon={<FaLock className="text-2xl text-primary" />}
-          placeholder={"confirm password"}
+          placeholder={"Password"}
+        />
+        <Input
+          type="password"
+          icon={<FaLock className="text-2xl text-primary" />}
+          placeholder={"Confirm Password"}
         />
         <p className="text-primary text-sm  font-semibold">Forgot password ?</p>
         <Button
