@@ -1,11 +1,12 @@
 export default function StatisticsSection() {
   return (
     <div
-      className="h-96 py-14 space-y-28 text-white "
+      className="h-96 py-14 space-y-28 text-white bg-primary"
       style={{
-        backgroundImage: "url(/bg.png)",
+        backgroundImage: "url(/bottombg.png)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        mixBlendMode:"hard-light"
       }}
     >
       <p className="text-center text-3xl font-semibold "> Our Statistics</p>

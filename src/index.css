@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,12 +6,12 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .shape {
   position: absolute;
   height: 50px;
   width: 50px;
-  background-color: white;
+  background-color: F0F1F3;
 }

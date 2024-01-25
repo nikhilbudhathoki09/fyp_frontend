@@ -10,21 +10,25 @@ export default function Footer() {
             <BsFillPinMapFill size={38} />
             <div>
               <p className="text-sm">Address</p>
-              <span className="text-[#9990b7]">NewRoad, Pokhara</span>
+              <span className="text-text-color-secondary">
+                NewRoad, Pokhara
+              </span>
             </div>
           </div>
           <div className="flex flex-row gap-5">
             <MdPhoneForwarded size={38} />
             <div>
               <p className="text-sm">Phone</p>
-              <span className="text-[#9990b7]">(+977) 980 0000 000</span>
+              <span className="text-text-color-secondary">
+                (+977) 980 0000 000
+              </span>
             </div>
           </div>
         </div>
         <div className="flex flex-row justify-between">
           <div className="w-72 space-y-4">
             <p className="text-lg font-semibold">About Hommies</p>
-            <span className="text-[#9990b7] line-clamp-6">
+            <span className="text-text-color-secondary line-clamp-6">
               A tech firm in Nepal is dedicated to assisting millions of
               individuals in effectively managing and enhancing their
               households. Daily, residents across every district rely on this
@@ -33,7 +37,7 @@ export default function Footer() {
           </div>
           <div className="w-72 space-y-4">
             <p className="text-lg font-semibold">Quick Links</p>
-            <span className="text-[#9990b7] line-clamp-6">
+            <span className="text-text-color-secondary line-clamp-6">
               <ul className="list-none">
                 <li className="hover:text-white cursor-pointer">Home</li>
                 <li className="hover:text-white cursor-pointer">About</li>
@@ -47,7 +51,7 @@ export default function Footer() {
           </div>
           <div className="w-72 space-y-4 relative">
             <p className="text-lg font-semibold">Newsletter</p>
-            <span className="text-[#9990b7] line-clamp-6">
+            <span className="text-text-color-secondary line-clamp-6">
               Sign up for the newsletter and discover the latest listings and
               promotions
             </span>
@@ -63,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <p className="text-center text-[#9990b7]">
+          <p className="text-center text-text-color-secondary">
             © 2021 Hommies. All rights reserved.
           </p>
         </div>

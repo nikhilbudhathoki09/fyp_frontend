@@ -2,7 +2,7 @@ import Button from "../../components/ui/button";
 
 export default function Navbar() {
   return (
-    <div className=" bg-primary text-white  py-6">
+    <div className=" bg-primary  text-white  py-6 z-40">
       <div className="layout flex flex-row justify-between items-center">
         <div className="flex flex-row items-center gap-20">
           <img src="/logo.png" alt="logo" className="w-20" />
@@ -16,14 +16,18 @@ export default function Navbar() {
           />
         </div>
         <div className="flex flex-row gap-3">
-          <Button
-            text="Login"
+          <a
+            href="/login"
             className=" hover:bg-button shadow-lg   px-7 py-3 rounded-full"
-          />
-          <Button
-            text="Register"
-            className=" bg-button shadow-lg px-7 py-3 rounded-full"
-          />
+          >
+            Login
+          </a>
+          <a
+            href="/register"
+            className=" bg-button hover:bg-primary/20 shadow-lg px-7 py-3 rounded-full"
+          >
+            Register
+          </a>
         </div>
       </div>
     </div>

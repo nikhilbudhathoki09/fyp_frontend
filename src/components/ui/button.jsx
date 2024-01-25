@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { cn } from "../../utils/utils";
 
 export default function Button({
   className,
@@ -13,7 +14,7 @@ export default function Button({
     <div>
       <button
         type={type}
-        className={className + " flex items-center space-x-2 text-sm"}
+        className={cn("flex items-center space-x-2 text-sm", className)}
         disabled={disabled || loading}
         onClick={onClick}
       >

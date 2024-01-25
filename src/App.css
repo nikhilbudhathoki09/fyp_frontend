@@ -6,4 +6,35 @@
   .layout {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+    display: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    scroll-behavior: smooth;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    width: 0.1rem;
+    background-color: #e8eff9;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    scroll-behavior: smooth;
+    border-radius: 20px;
+    @apply bg-primary-1000;
+  }
+}
+
+@layer components {
+  .input {
+    @apply flex w-full rounded-md px-4 py-2 ring-1 border ring-gray-300 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none transition ease-in-out duration-150;
+  }
 }
