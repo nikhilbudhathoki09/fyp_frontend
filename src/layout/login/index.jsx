@@ -1,6 +1,4 @@
-import Footer from "../../components/footer/footer";
 import LoginForm from "../../components/forms/login-form";
-import Navbar from "../../components/navbar/navbar";
 
 export default function Login() {
   return (
@@ -13,16 +11,13 @@ export default function Login() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <Navbar />
-      </div>
+      ></div>
 
       <div className="layout flex  justify-center">
         <div className="w-[38%] absolute top-56  z-[99999]">
           <LoginForm />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

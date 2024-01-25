@@ -29,7 +29,7 @@
   .custom-scrollbar::-webkit-scrollbar-thumb {
     scroll-behavior: smooth;
     border-radius: 20px;
-    @apply bg-primary-1000;
+    @apply bg-primary;
   }
 }
 

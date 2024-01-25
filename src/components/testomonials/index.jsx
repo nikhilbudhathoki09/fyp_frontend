@@ -45,7 +45,7 @@ export default function TestomonialsSection() {
     },
   ];
   return (
-    <div className="bg-white-bg py-10 pop">
+    <div className="bg-white-bg py-10 ">
       <div className="layout flex flex-col gap-6 text-primary">
         <h3 className="text-2xl font-semibold text-center">Testomonials</h3>
         <div className="grid grid-cols-3 items-center gap-6">

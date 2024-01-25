@@ -61,7 +61,7 @@ export default function Footer() {
               className="w-full bg-white text-primary text-sm px-4 py-3 placeholder:text-primary rounded-md"
               placeholder="you@domain.com |"
             />
-            <span className="uppercase text-sm text-primary cursor-pointer absolute  bottom-12 right-6">
+            <span className="uppercase text-sm text-primary cursor-pointer absolute bottom-6 right-6">
               Subscribe
             </span>
           </div>
