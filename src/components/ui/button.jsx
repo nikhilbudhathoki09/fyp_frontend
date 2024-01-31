@@ -40,9 +40,9 @@ export default function Button({
 Button.propTypes = {
   className: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   disabled: PropTypes.bool,
-  type: PropTypes.oneOf(["button", "submit", "reset"]).isRequired,
+  type: PropTypes.oneOf(["button", "submit", "reset"]),
   onClick: PropTypes.func,
-  icon: PropTypes.elementType,
+  icon: PropTypes.element,
 };

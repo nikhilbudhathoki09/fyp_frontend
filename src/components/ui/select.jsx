@@ -1,16 +1,9 @@
 import PropTypes from "prop-types";
 import { cn } from "../../utils/utils";
 
-export default function Select({
-  label,
-  options,
-  icon,
-  placeholder,
-  className,
-}) {
+export default function Select({ options, icon, placeholder, className }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
       <div className="mt-1 relative rounded-lg shadow-sm border">
         <div className="absolute inset-y-0 left-0 pl-3 text-primary flex items-center pointer-events-none">
           {icon && icon}
@@ -34,14 +27,13 @@ export default function Select({
 }
 
 Select.propTypes = {
-  label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
-  icon: PropTypes.elementType,
+  icon: PropTypes.element,
   placeholder: PropTypes.string,
   className: PropTypes.string,
 };

@@ -5,7 +5,7 @@ import StatisticsSection from "../../components/statistics";
 
 export default function HomePageSection() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-14">
       {" "}
       <Banner />
       <ServicesSection />

@@ -11,11 +11,10 @@ export default function Register() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-      </div>
+      ></div>
 
       <div className="layout flex  justify-center">
-        <div className="w-[38%] absolute top-56  z-[99999]">
+        <div className=" absolute top-56  z-[99999]">
           <RegisterFrom />
         </div>
       </div>
