@@ -8,31 +8,53 @@ export default function Button({
   loading,
   icon,
   disabled,
+  asLink,
   type,
+  link,
   onClick,
 }) {
   return (
     <div>
-      <button
-        type={type}
-        className={cn(
-          "flex items-center space-x-2 text-sm relative",
-          className
-        )}
-        disabled={disabled || loading}
-        onClick={onClick}
-      >
-        {text && (
-          <span className="flex items-center gap-3">
-            {text}
-            {icon}
-          </span>
-        )}
-        {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
-        {/* <span className="absolute inset-y-0 right-0 pl-3  text-primary flex items-center pointer-events-none">
+      {asLink ? (
+        <a
+          href={link}
+          className={cn(
+            "flex items-center space-x-2 text-sm relative",
+            className
+          )}
+          disabled={disabled || loading}
+          onClick={onClick}
+        >
+          {text && (
+            <span className="flex items-center gap-3">
+              {text}
+              {icon}
+            </span>
+          )}
+          {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+        </a>
+      ) : (
+        <button
+          type={type}
+          className={cn(
+            "flex items-center space-x-2 text-sm relative",
+            className
+          )}
+          disabled={disabled || loading}
+          onClick={onClick}
+        >
+          {text && (
+            <span className="flex items-center gap-3">
+              {text}
+              {icon}
+            </span>
+          )}
+          {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+          {/* <span className="absolute inset-y-0 right-0 pl-3  text-primary flex items-center pointer-events-none">
           {icon && icon}
         </span> */}
-      </button>
+        </button>
+      )}
     </div>
   );
 }
@@ -45,4 +67,6 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "submit", "reset"]),
   onClick: PropTypes.func,
   icon: PropTypes.element,
+  asLink: PropTypes.bool,
+  link: PropTypes.string,
 };

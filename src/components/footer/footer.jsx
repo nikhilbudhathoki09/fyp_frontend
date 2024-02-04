@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="flex flex-row justify-between">
           <div className="w-72 space-y-4">
             <p className="text-lg font-semibold">About Hommies</p>
-            <span className="text-text-color-secondary line-clamp-6">
+            <span className="text-text-color-secondary text-justify line-clamp-6">
               A tech firm in Nepal is dedicated to assisting millions of
               individuals in effectively managing and enhancing their
               households. Daily, residents across every district rely on this
@@ -59,10 +59,10 @@ export default function Footer() {
             <input
               type="text"
               className="w-full bg-white text-primary text-sm px-4 py-3 placeholder:text-primary rounded-md"
-              placeholder="you@domain.com |"
+              placeholder="you@domain.com"
             />
             <span className="uppercase text-sm text-primary cursor-pointer absolute bottom-6 right-6">
-              Subscribe
+              | Subscribe
             </span>
           </div>
         </div>

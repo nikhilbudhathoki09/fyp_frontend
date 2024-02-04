@@ -37,6 +37,8 @@ export default function RegisterFrom() {
     mode: "all",
   });
 
+  console.log(errors);
+
   const onSubmit = (data) => {
     // e.preventDefault();
     console.log("dfghjk");
@@ -121,7 +123,7 @@ export default function RegisterFrom() {
         <p className="text-primary text-sm  font-semibold">Forgot password?</p>
         <Button
           type="submit"
-          text="Login Now"
+          text="Register Now"
           // loading={loading}
           className="bg-primary flex justify-center hover:bg-tertiary cursor-pointer w-full py-4 text-center rounded-2xl text-white-bg text-xl"
         />
