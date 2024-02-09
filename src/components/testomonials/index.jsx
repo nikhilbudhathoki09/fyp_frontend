@@ -10,35 +10,35 @@ export default function TestomonialsSection() {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas. hahaha ahahaha hahaha ahahah ahaha ahahahaha ahahaha ahahaha aha  amet consectetur adipisicing elit. Quisquam, voluptas. hahaha ahahaha hahaha ahahah ahaha ahahahaha ahahaha ahahaha aha  ahaha    amet consectetur adipisicing elit. Quisquam, voluptas. hahaha ahahaha hahaha ahahah ahaha ahahahaha ahahaha ahahaha aha  ahaha ",
     },
     {
-      name: "John Doe",
+      name: "Ashish Khatri",
       id: 2,
       image: "",
       testimonial:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas.",
     },
     {
-      name: "John Doe",
+      name: "Nikhil Jung",
       id: 3,
       image: "",
       testimonial:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas.",
     },
     {
-      name: "John Doe",
+      name: "Ram Bahadur",
       id: 4,
       image: "",
       testimonial:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas.",
     },
     {
-      name: "John Doe",
+      name: "Azu Bhazzu",
       id: 5,
       image: "",
       testimonial:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas.",
     },
     {
-      name: "John Doe",
+      name: "Kshitij Rana",
       id: 6,
       image: "",
       testimonial: "Lorem ipsum dolor sit amet ",
