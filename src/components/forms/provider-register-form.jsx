@@ -16,7 +16,7 @@ import { cn } from "../../utils/utils";
 const schema = yup.object().shape({
   username: yup.string().required("Username is required"),
   email: yup.string().email().required("Email is required"),
-  phoneNumber: yup.number().required("Phone Number is required"),
+  phoneNumber: yup.number().positive().required("Phone Number is required"),
   address: yup.string().required("Address is required"),
   gender: yup
     .string()
@@ -33,7 +33,7 @@ const schema = yup.object().shape({
 
   userImage: yup.mixed().required("Profile picture is required"),
 });
-export default function RegisterFrom() {
+export default function ProviderRegisterFrom() {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -54,7 +54,9 @@ export default function RegisterFrom() {
 
   return (
     <div className="px-12 py-8 rounded-lg shadow-xl bg-white w-full">
-      <h3 className="text-text-color text-4xl font-semibold">Register</h3>
+      <h3 className="text-text-color text-3xl font-semibold">
+        Register as a Service Provider
+      </h3>
       <p className="text-base mt-3 text-text-color-secondary ">
         I already have an account?
         <a className="text-primary underline ml-2 font-semibold" href="/login">
@@ -84,7 +86,7 @@ export default function RegisterFrom() {
           error={errors.email?.message}
         />
 
-        <ProfileImageInput register={register} image={watch("userImage")} />
+        {/* <ProfileImageInput register={register} image={watch("userImage")} /> */}
         <div className="flex  w-full flex-row gap-4 justify-between">
           <Input
             type="number"

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TOKEN_KEY } from "../../utils/constants";
+import { USER_KEY } from "../../utils/constants";
 
 const user =
-  localStorage.getItem(TOKEN_KEY) !== null || undefined
-    ? JSON.parse(localStorage.getItem(TOKEN_KEY))
+  localStorage.getItem(USER_KEY) !== null || undefined
+    ? JSON.parse(localStorage.getItem(USER_KEY))
     : null;
 
 const userSlice = createSlice({
