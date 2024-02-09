@@ -11,6 +11,7 @@ export default function Input({
   className,
   register,
   error,
+  required,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordInputEmpty, setIsPasswordInputEmpty] = useState(true);
@@ -54,6 +55,7 @@ export default function Input({
           {...(register && {
             ...register(id),
           })}
+          required={required || false}
         />
 
         {type === "password" && !isPasswordInputEmpty && (
@@ -81,4 +83,5 @@ Input.propTypes = {
   error: PropTypes.string,
   register: PropTypes.func,
   id: PropTypes.string,
+  required: PropTypes.bool,
 };

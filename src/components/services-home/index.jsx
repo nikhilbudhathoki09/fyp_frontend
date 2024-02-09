@@ -16,7 +16,7 @@ export default function CategoriesSectionHome() {
                 />
               </div>
               <p key={i} className="text-sm group-hover:underline">
-                Service {i + 1}
+                Plumbing {i + 1}
               </p>
             </div>
           </a>

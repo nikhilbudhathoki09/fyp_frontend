@@ -2,9 +2,7 @@ import { MdEmail } from "react-icons/md";
 import Input from "../ui/input";
 import { FaLock } from "react-icons/fa";
 import Button from "../ui/button";
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { changeUser } from "../../redux/reducers/userSlice";
+import loginUser from "../../services/auth/login-user";
 
 import { useForm } from "react-hook-form";
 
@@ -12,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 import { useState } from "react";
+import { cn } from "../../utils/utils";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("Email is required"),
@@ -34,13 +33,14 @@ export default function LoginForm() {
     mode: "all",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // e.preventDefault();
     setLoading(true);
-    console.log("dfghjk");
-    console.log(data);
+    await loginUser(data);
+
     setLoading(false);
   };
+
   return (
     <div className="px-12 py-8 rounded-lg shadow-xl bg-white">
       <h3 className="text-text-color text-4xl font-semibold">Login</h3>
@@ -53,7 +53,10 @@ export default function LoginForm() {
           Register Now
         </a>
       </p>
-      <form className="space-y-5 mt-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={cn("space-y-5 mt-4 mb-2", loading && "blur-sm")}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Input
           type="email"
           icon={<MdEmail className="text-2xl text-primary" />}

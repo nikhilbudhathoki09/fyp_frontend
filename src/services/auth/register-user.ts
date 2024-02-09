@@ -1,23 +1,37 @@
-// import { TRegisterForm } from "#/components/login/register-form";
 import { toast } from "react-hot-toast";
 
 export default async function registerUser(data) {
   try {
-    // const res = await fetch(process.env.API_BASE_URL + `/auth/register`, {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    // });
-    // const json = await res.json();
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("username", data.username);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("address", data.address);
+    formData.append("gender", data.gender);
 
-    // if (!res.ok) {
-    //   toast.error(json.message);
-    //   return;
-    // }
+    data.userImage[0] && formData.append("userImage", data.userImage[0]);
 
-    // toast.success(json.message);
-    console.log("dfghj");
-    console.log(data);
+    const res = await fetch("http://localhost:8000/api/v1/auth/register", {
+      method: "POST",
+      body: formData,
+    });
+
+    console.log(res);
+
+    const json = await res.json();
+
+    console.log(json);
+
+    if (!res.ok) {
+      toast.error(json.message);
+      return;
+    }
+
+    toast.success(json.message);
   } catch (err: any) {
-    toast.error(err.message);
+    console.log(err);
+
+    toast.error(err);
   }
 }

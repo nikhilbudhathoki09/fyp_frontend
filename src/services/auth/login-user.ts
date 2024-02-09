@@ -1,22 +1,34 @@
 // import { TRegisterForm } from "#/components/login/register-form";
 import { toast } from "react-hot-toast";
+import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
 
 export default async function loginUser(data) {
   try {
-    // const res = await fetch(process.env.API_BASE_URL + `/auth/login`, {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    // });
-    // const json = await res.json();
+    const res = await fetch("http://localhost:8000/api/v1/auth/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    // if (!res.ok) {
-    //   toast.error(json.message);
-    //   return;
-    // }
+    const json = await res.json();
 
-    // toast.success(json.message);
-    console.log("dfghj");
-    console.log(data);
+    if (!res.ok) {
+      toast.error(json.message);
+
+      return;
+    }
+
+    localStorage.setItem(TOKEN_KEY, json.access_token);
+    localStorage.setItem(USER_KEY, JSON.stringify(json.user));
+    console.log(json);
+
+    document.cookie = `token=${json.access_token}`;
+
+    window.location.href = "/";
+
+    toast.success("Logged in successfully");
   } catch (err: any) {
     toast.error(err.message);
   }
