@@ -29,7 +29,7 @@ export default async function loginUser(data) {
     window.location.href = "/";
 
     toast.success("Logged in successfully");
-  } catch (err: any) {
+  } catch (err) {
     toast.error(err.message);
   }
 }

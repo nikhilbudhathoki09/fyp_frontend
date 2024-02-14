@@ -1,7 +1,10 @@
+import { MdNotAccessible } from "react-icons/md";
 import Select from "../ui/select";
 import ServiceCard from "./service-card";
+import PropTypes from "prop-types";
 
-export default function ServicesSection() {
+export default function ServicesSection(services) {
+  console.log(services);
   return (
     <div className="space-y-4">
       <div className="flex justify-between">
@@ -21,10 +24,21 @@ export default function ServicesSection() {
       </div>
       {/* Services sections  */}
       <div className="flex flex-wrap justify-between gap-6">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <ServiceCard key={i} />
-        ))}
+        {Array.isArray(services) && services.length !== 0 ? (
+          services.map((service) => <ServiceCard key={service.id} />)
+        ) : (
+          <div className="border border-red-500 flex flex-col gap-3 items-center rounded-md justify-center w-full h-[45vh]">
+            <p className="text-xl font-semibold text-red-400">
+              No services in this category
+            </p>
+            <MdNotAccessible color="red" size={40} />
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
+ServicesSection.propTypes = {
+  services: PropTypes.array, // Correctly defining propTypes
+};

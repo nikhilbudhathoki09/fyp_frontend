@@ -1,7 +1,7 @@
 import { AiOutlineLogout } from "react-icons/ai";
 import Button from "../../components/ui/button";
-import { useSelector } from "react-redux";
 import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user);
