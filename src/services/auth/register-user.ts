@@ -29,7 +29,7 @@ export default async function registerUser(data) {
     }
 
     toast.success(json.message);
-  } catch (err: any) {
+  } catch (err) {
     console.log(err);
 
     toast.error(err);

@@ -1,14 +1,13 @@
 import Banner from "./banner";
-import ServicesSection from "../../components/services-home";
 import TestomonialsSection from "../../components/testomonials";
 import StatisticsSection from "../../components/statistics";
+import CategoriesSectionHome from "../../components/services-home/categories-section-home";
 
 export default function HomePageSection() {
   return (
     <div className="space-y-14">
-      {" "}
       <Banner />
-      <ServicesSection />
+      <CategoriesSectionHome />
       <TestomonialsSection />
       <StatisticsSection />
     </div>
