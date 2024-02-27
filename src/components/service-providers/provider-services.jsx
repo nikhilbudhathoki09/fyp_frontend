@@ -13,6 +13,7 @@ export default function ProviderServices(services) {
               key={service.id}
               serviceDescription={service.description}
               serviceTitle={service.serviceName}
+              isProviderProfile
             />
           ))
         ) : (

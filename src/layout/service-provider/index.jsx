@@ -29,9 +29,9 @@ export default function ServiceProviderPage() {
         <div className="layout">
           <div className="w-full  flex flex-row items-center gap-5">
             <img
-              src={data.providerImage || "https://via.placeholder.com/150"}
+              src={data.providerImage || "/nopfp.png"}
               alt="provider"
-              className="rounded-md"
+              className="rounded-md w-40 h-40 object-contain bg-black "
             />
             <div className="space-y-2">
               <h1 className="text-primary text-xl font-semibold">
