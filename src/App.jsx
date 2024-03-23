@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import ProviderRegister from "./layout/provider-register/provider-register";
+import ProfilePage from "./layout/profile-page";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             path="/providers/:providerId"
             element={<ServiceProviderPage />}
           />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
       <Footer />

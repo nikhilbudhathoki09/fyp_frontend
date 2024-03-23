@@ -28,6 +28,7 @@ export default function ServicesSection(services) {
             <ServiceCard
               serviceImage={service.serviceImage}
               key={service.id}
+              id={service.id}
               serviceDescription={service.description}
               serviceTitle={service.serviceName}
             />

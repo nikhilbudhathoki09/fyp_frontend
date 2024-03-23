@@ -14,6 +14,7 @@ export default function ServiceCard({
   serviceTitle,
   isProviderProfile = false,
   serviceDescription,
+  id,
 }) {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -82,7 +83,12 @@ export default function ServiceCard({
         />
       </div>
 
-      <BookForm isOpen={isOpen} closeModal={closeModal} />
+      <BookForm
+        isOpen={isOpen}
+        closeModal={closeModal}
+        providerId={0}
+        serviceId={id}
+      />
     </div>
   );
 }
@@ -92,4 +98,5 @@ ServiceCard.propTypes = {
   serviceTitle: PropTypes.string,
   serviceDescription: PropTypes.string,
   isProviderProfile: PropTypes.bool,
+  id: PropTypes.number,
 };

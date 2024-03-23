@@ -6,8 +6,6 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const user = useSelector((state) => state.user);
 
-  console.log(user);
-
   const handleLogout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);

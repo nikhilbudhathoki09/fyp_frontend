@@ -49,7 +49,7 @@ export default function Banner() {
             />
             <Button
               text="Search Now"
-              className="bg-button px-6  py-3 rounded-3xl absolute right-[2px] top-[2px]"
+              className="bg-button px-6 w-[40%] hover:bg-button/90  py-3 rounded-3xl absolute right-[2px] top-[2px]"
             />
           </div>
         </motion.div>

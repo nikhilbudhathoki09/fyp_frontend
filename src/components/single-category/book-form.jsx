@@ -1,11 +1,30 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import Select from "../ui/select";
 import Input from "../ui/input";
 import Button from "../ui/button";
+import appointProvider from "../../services/appointment/appoint-provider";
+import { FaSpinner } from "react-icons/fa";
+import { cn } from "../../utils/utils";
 
-export default function BookForm({ isOpen, closeModal }) {
+export default function BookForm({
+  isOpen,
+  closeModal,
+  userId,
+  serviceId,
+  providerId,
+}) {
+  const [loading, setLoading] = useState(false);
+  const handleBook = async () => {
+    setLoading(true);
+    await appointProvider({
+      userId,
+      serviceId,
+      providerId,
+    });
+    setLoading(false);
+  };
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -58,7 +77,19 @@ export default function BookForm({ isOpen, closeModal }) {
                     className={"px-4 py-3"}
                     placeholder={"Name"}
                   />
-                  <Button text="Request Now" className="flex w-full justify-center bg-black rounded-lg p-3 text-white" />
+                  <Button
+                    text="Request Now"
+                    onClick={handleBook}
+                    icon={
+                      <FaSpinner
+                        className={cn(
+                          loading && "block animate-spin",
+                          "hidden"
+                        )}
+                      />
+                    }
+                    className="flex w-full justify-center bg-black rounded-lg p-3 text-white"
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -72,4 +103,7 @@ export default function BookForm({ isOpen, closeModal }) {
 BookForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  userId: PropTypes.number,
+  serviceId: PropTypes.number,
+  providerId: PropTypes.number,
 };
