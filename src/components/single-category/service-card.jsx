@@ -14,6 +14,7 @@ export default function ServiceCard({
   serviceTitle,
   isProviderProfile = false,
   serviceDescription,
+  provider,
   id,
 }) {
   let [isOpen, setIsOpen] = useState(false);
@@ -41,13 +42,17 @@ export default function ServiceCard({
             src="/nopfp.png"
             className="w-16  h-16 border border-green-500 rounded-full object-cover"
           />
-          <div className="flex flex-col ">
-            <h1 className="text-base font-semibold">John Doe</h1>
-            <p className="text-sm flex items-center gap-1 font-light">
-              <MdOutlineLocationOn color="#7950f2" size={20} />
-              Pokhara-32, Satmuhane
-            </p>
-          </div>
+          {provider && (
+            <div className="flex flex-col">
+              <h1 className="text-base font-semibold">
+                {provider.providerName}
+              </h1>
+              <p className="text-sm flex items-center gap-1 font-light">
+                <MdOutlineLocationOn color="#7950f2" size={20} />
+                Pokhara-32, Satmuhane
+              </p>
+            </div>
+          )}
         </div>
       )}
       <div className="text-[#ffa800] flex p-2 items-center gap-1 text-xl">
@@ -99,4 +104,5 @@ ServiceCard.propTypes = {
   serviceDescription: PropTypes.string,
   isProviderProfile: PropTypes.bool,
   id: PropTypes.number,
+  provider: PropTypes.object,
 };

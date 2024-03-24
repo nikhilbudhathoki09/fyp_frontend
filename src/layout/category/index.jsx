@@ -14,6 +14,11 @@ export default function CategoryPage() {
     description: "",
     allServices: [],
     categoryImage: "",
+    provider: {
+      providerName: "",
+      providerId: 0,
+      providerImage: "",
+    },
   });
 
   useEffect(() => {

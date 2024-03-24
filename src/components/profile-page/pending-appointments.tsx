@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export default function PendingAppointments({ pendingAppointments }) {
   return (
     <div className="flex w-full flex-col border-2 border-yellow-400 rounded-md p-4">
-      <p className="uppercase font-bold text-yellow-400">pending</p>
+      <p className="uppercase font-bold text-yellow-400">Pending</p>
       <br />
       <div className="grid grid-cols-2 items-center gap-5 ">
         {pendingAppointments.length !== 0 ? (
