@@ -32,7 +32,7 @@ function App() {
 
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route
-            path="/providers/:providersId"
+            path="/providers/:providerId"
             element={<ServiceProviderPage />}
           />
         </Routes>

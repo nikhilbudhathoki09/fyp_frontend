@@ -1,13 +1,18 @@
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { FaStarHalfStroke } from "react-icons/fa6";
+import PropTypes from "prop-types";
 import { FiExternalLink } from "react-icons/fi";
 import { useState } from "react";
 
 import Button from "../ui/button";
 import BookForm from "./book-form";
 
-export default function ServiceCard() {
+export default function ServiceCard({
+  serviceImage,
+  serviceTitle,
+  serviceDescription,
+}) {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -20,10 +25,13 @@ export default function ServiceCard() {
   return (
     <div className="border p-4 rounded-md bg-white shadow-md space-y-3">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/7/73/Wasserhahn.jpg"
+        src={
+          serviceImage ||
+          "https://upload.wikimedia.org/wikipedia/commons/7/73/Wasserhahn.jpg"
+        }
         className="w-[370px] h-52 object-cover rounded-md"
       />
-      <h1 className="text-xl font-bold text-start">Tap Repairing</h1>
+      <h1 className="text-xl font-bold text-start">{serviceTitle || "N/A"}</h1>
       <div className="flex items-center gap-4">
         <img
           src="/nopfp.png"
@@ -45,10 +53,7 @@ export default function ServiceCard() {
         <FaStarHalfStroke />
       </div>
       <p className=" text-text-color-secondary w-[370px] text-sm line-clamp-5">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corrupti,
-        illo aliquid, esse sint eos magni quo autem similique veniam distinctio
-        repellendus, aperiam consequatur incidunt temporibus dicta ut! Quaerat,
-        sed. Impedit rem aut quis libero recusandae laborum ex dicta optio,
+        {serviceDescription || "N/A"}
       </p>
       <div className="flex justify-between">
         <Button
@@ -70,3 +75,9 @@ export default function ServiceCard() {
     </div>
   );
 }
+
+ServiceCard.propTypes = {
+  serviceImage: PropTypes.string,
+  serviceTitle: PropTypes.string,
+  serviceDescription: PropTypes.string,
+};

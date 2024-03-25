@@ -12,6 +12,7 @@ export default function CategoriesSectionHome() {
     };
     fetchServices();
   }, []);
+
   return (
     <div className="flex w-full flex-col gap-6 relative  text-black   items-center justify-center py-6 layout ">
       <h3 className="text-3xl font-semibold">Services</h3>
@@ -21,7 +22,7 @@ export default function CategoriesSectionHome() {
         {services &&
           services.length !== 0 &&
           services?.map((data, i) => (
-            <a href={`/category/${data.title}`} key={i} className="group">
+            <a href={`/category/${data.id}`} key={i} className="group">
               <div className="p-2 flex gap-2  font-semibold items-center justify-center flex-col">
                 <div className="p-7 rounded-full  bg-white">
                   {data.categoryImage ? (

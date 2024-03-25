@@ -18,11 +18,11 @@ export default function CategoryPage() {
 
   useEffect(() => {
     const fetchServices = async () => {
-      const data = await getSingleCategory(1);
+      const data = await getSingleCategory(categoryId);
       setServiceData(data);
     };
     fetchServices();
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="layout space-y-8 py-8 w-full">
