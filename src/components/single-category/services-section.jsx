@@ -4,7 +4,7 @@ import ServiceCard from "./service-card";
 import PropTypes from "prop-types";
 
 export default function ServicesSection(services) {
-  console.log(services);
+  console.log(services.provider);
   return (
     <div className="space-y-4">
       <div className="flex justify-between">
@@ -33,7 +33,7 @@ export default function ServicesSection(services) {
               serviceDescription={service.description}
               serviceTitle={service.serviceName}
               isProviderProfile={false}
-              provider={service.provider}
+              provider={services.provider[0]}
             />
           ))
         ) : (
@@ -50,5 +50,5 @@ export default function ServicesSection(services) {
 }
 
 ServicesSection.propTypes = {
-  services: PropTypes.array, // Correctly defining propTypes
+  services: PropTypes.array,
 };

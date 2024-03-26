@@ -13,12 +13,8 @@ export default function CategoryPage() {
     title: "",
     description: "",
     allServices: [],
+    allProviders: [],
     categoryImage: "",
-    provider: {
-      providerName: "",
-      providerId: 0,
-      providerImage: "",
-    },
   });
 
   useEffect(() => {
@@ -28,6 +24,8 @@ export default function CategoryPage() {
     };
     fetchServices();
   }, [categoryId]);
+
+  console.log(serviceData);
 
   return (
     <div className="layout space-y-8 py-8 w-full">
@@ -44,7 +42,10 @@ export default function CategoryPage() {
           <SubCategoryCard />
         </div>
         <div className="w-full">
-          <ServicesSection services={serviceData.allServices} />
+          <ServicesSection
+            services={serviceData.allServices}
+            provider={serviceData.allProviders}
+          />
         </div>
       </div>
     </div>

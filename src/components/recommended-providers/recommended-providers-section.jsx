@@ -1,5 +1,7 @@
 import { FaArrowRight, FaStar, FaStarHalfStroke } from "react-icons/fa6";
 import { TbExternalLink } from "react-icons/tb";
+import { CgCalendarNext } from "react-icons/cg";
+import { FaPhoneAlt } from "react-icons/fa";
 import Button from "../ui/button";
 
 export default function RecommendedProviderSection() {
@@ -22,6 +24,16 @@ export default function RecommendedProviderSection() {
               />
             </div>
             <h1 className="text-xl font-bold">Janak aka Plumber</h1>
+            <div className="flex whitespace-nowrap flex-col gap-2 items-center">
+              <div className="flex flex-row gap-2 items-center">
+                <FaPhoneAlt />
+                <p>{982888282}</p>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <CgCalendarNext />
+                <p>{9}+ years of experience</p>
+              </div>
+            </div>
             <div className="text-[#ffa800] flex  items-center gap-1 text-xl">
               <FaStar />
               <FaStar />

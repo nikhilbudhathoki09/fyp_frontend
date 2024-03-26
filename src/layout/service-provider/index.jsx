@@ -18,10 +18,13 @@ export default function ServiceProviderPage() {
   useEffect(() => {
     const fetchDetails = async () => {
       const res = await getSingleProvider(providerId);
+      console.log(res);
       setData(res);
     };
     fetchDetails();
   }, [providerId]);
+
+  console.log(data);
 
   return (
     <div>
@@ -29,7 +32,10 @@ export default function ServiceProviderPage() {
         <div className="layout">
           <div className="w-full  flex flex-row items-center gap-5">
             <img
-              src={data.providerImage || "/nopfp.png"}
+              src={
+                data?.categories?.allProviders?.[0]?.providerImage ||
+                "/nopfp.png"
+              }
               alt="provider"
               className="rounded-md w-40 h-40 object-contain bg-black "
             />
@@ -58,7 +64,10 @@ export default function ServiceProviderPage() {
 
       <div className="layout py-10">
         {selectedTab === "services" && (
-          <ProviderServices services={data.allServices || []} />
+          <ProviderServices
+            services={data?.allServices || []}
+            provider={data?.categories?.allProviders?.[0] || {}}
+          />
         )}
         {selectedTab === "overview" && <Overview />}
         {selectedTab === "review" && <ReviewSection />}
