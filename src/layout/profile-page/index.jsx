@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import PendingAppointments from "../../components/profile-page/pending-appointments";
 import RejectedAppointments from "../../components/profile-page/rejected-appointments";
 import { useSelector } from "react-redux";
+// import { useParams } from "react-router-dom";
 
 import getUserAppointments from "../../services/appointment/get-user-appointments";
 export default function ProfilePage() {
+  // const { userId } = useParams();
   const [pendingAppointments, setPendingAppointments] = useState([]);
   const [rejectedAppointments, setRejectedAppointments] = useState([]);
 

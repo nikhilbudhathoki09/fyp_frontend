@@ -1,8 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import Select from "../ui/select";
-import Input from "../ui/input";
 import Button from "../ui/button";
 import appointProvider from "../../services/appointment/appoint-provider";
 import { FaSpinner } from "react-icons/fa";
@@ -14,6 +12,9 @@ export default function BookForm({
   userId,
   serviceId,
   providerId,
+  serviceName,
+  providerName,
+  close,
 }) {
   const [loading, setLoading] = useState(false);
   const handleBook = async () => {
@@ -23,6 +24,7 @@ export default function BookForm({
       serviceId,
       providerId,
     });
+    close();
     setLoading(false);
   };
   return (
@@ -54,29 +56,18 @@ export default function BookForm({
               >
                 <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <h1>Appionments informations</h1>
-                  <Select
-                    options={[
-                      { label: "Pick Time", value: null },
-                      { value: "Price", label: "Price" },
-                      { value: "Location", label: "Location" },
-                    ]}
-                    className={"px-2 py-3  text-base font-light"}
-                  />
-                  <Input
-                    type="Name"
-                    className={"px-4 py-3"}
-                    placeholder={"Name"}
-                  />
-                  <Input
-                    type="Name"
-                    className={"px-4 py-3"}
-                    placeholder={"Name"}
-                  />
-                  <Input
-                    type="Name"
-                    className={"px-4 py-3"}
-                    placeholder={"Name"}
-                  />
+
+                  <div className="w-full flex items-center p-3 rounded-md border">
+                    <p>
+                      Service : <b>{serviceName || "N/A"}</b>{" "}
+                    </p>
+                  </div>
+                  <div className="w-full flex items-center p-3 rounded-md border">
+                    <p>
+                      Provider Name : <b> {providerName || "N/A"} </b>
+                    </p>
+                  </div>
+
                   <Button
                     text="Request Now"
                     onClick={handleBook}
@@ -105,5 +96,8 @@ BookForm.propTypes = {
   closeModal: PropTypes.func.isRequired,
   userId: PropTypes.number,
   serviceId: PropTypes.number,
+  serviceName: PropTypes.string,
+  providerName: PropTypes.string,
   providerId: PropTypes.number,
+  close: PropTypes.func,
 };

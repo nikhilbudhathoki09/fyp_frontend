@@ -11,6 +11,7 @@ import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import ProviderRegister from "./layout/provider-register/provider-register";
 import ProfilePage from "./layout/profile-page";
+import AllServicesSection from "./layout/all-services/all-services-section";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             element={<ServiceProviderPage />}
           />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/all-services" element={<AllServicesSection />} />
         </Routes>
       </Router>
       <Footer />

@@ -9,6 +9,7 @@ import { CgCalendarNext } from "react-icons/cg";
 import Button from "../ui/button";
 import BookForm from "./book-form";
 import { cn } from "../../utils/utils";
+import { useSelector } from "react-redux";
 
 export default function ServiceCard({
   serviceImage,
@@ -18,6 +19,8 @@ export default function ServiceCard({
   provider,
   id,
 }) {
+  const user = useSelector((state) => state.user);
+  console.log(user);
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -96,10 +99,14 @@ export default function ServiceCard({
       </div>
 
       <BookForm
+        serviceName={serviceTitle}
+        providerName={provider.providerName}
         isOpen={isOpen}
         closeModal={closeModal}
-        providerId={0}
+        providerId={provider.providerId}
+        userId={user.user.userId}
         serviceId={id}
+        close={closeModal}
       />
     </div>
   );

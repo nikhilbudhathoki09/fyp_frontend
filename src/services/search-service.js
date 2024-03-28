@@ -1,16 +1,12 @@
 // import { TRegisterForm } from "#/components/login/register-form";
 import { toast } from "react-hot-toast";
 
-export default async function appointProvider({
-  userId,
-  serviceId,
-  providerId,
-}) {
+export default async function searchService(query) {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/v1/create-appointment?userId=${userId}&providerId=${providerId}&serviceId=${serviceId}`,
+      `http://localhost:8000/api/v1/providers/services/search?search=${query}`,
       {
-        method: "POST",
+        method: "GET",
       }
     );
 
@@ -19,7 +15,6 @@ export default async function appointProvider({
     if (!res.ok) {
       toast.error(json.message);
     }
-    toast.success("Appointment created successfully");
     return json;
   } catch (err) {
     toast.error(err.message);

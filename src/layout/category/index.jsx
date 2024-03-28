@@ -25,8 +25,6 @@ export default function CategoryPage() {
     fetchServices();
   }, [categoryId]);
 
-  console.log(serviceData);
-
   return (
     <div className="layout space-y-8 py-8 w-full">
       <div className="flex items-start justify-start w-full">
