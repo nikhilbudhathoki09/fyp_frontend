@@ -13,6 +13,7 @@ export default function CategoryPage() {
     title: "",
     description: "",
     allServices: [],
+    allProviders: [],
     categoryImage: "",
   });
 
@@ -39,7 +40,10 @@ export default function CategoryPage() {
           <SubCategoryCard />
         </div>
         <div className="w-full">
-          <ServicesSection services={serviceData.allServices} />
+          <ServicesSection
+            services={serviceData.allServices}
+            provider={serviceData.allProviders}
+          />
         </div>
       </div>
     </div>

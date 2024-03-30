@@ -1,8 +1,9 @@
 import { CiSearch } from "react-icons/ci";
-import Button from "../../components/ui/button";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Banner() {
+  const [searchQuery, setSearchQuery] = useState("");
   return (
     <div className=" bg-primary text-white  py-6 ">
       <div className="layout flex w-full flex-row gap-2 items-center ">
@@ -40,6 +41,8 @@ export default function Banner() {
           </p>
           <div className="relative w-fit ">
             <input
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
               placeholder="Search for services"
               className="border-none focus:border-none focus:outline-1 focus:outline-tertiary py-4 flex w-[24rem] rounded-full pl-14 pr-2 text-xs text-[#988ccd]"
             />
@@ -47,10 +50,12 @@ export default function Banner() {
               size={28}
               className="absolute top-2 text-primary left-3"
             />
-            <Button
-              text="Search Now"
-              className="bg-button px-6  py-3 rounded-3xl absolute right-[2px] top-[2px]"
-            />
+            <a
+              href={`/all-services?search=${searchQuery}`}
+              className="bg-button px-6 w-[40%] hover:bg-button/90  py-[10px] rounded-3xl absolute right-0 top-[2px] border"
+            >
+              Search Now
+            </a>
           </div>
         </motion.div>
         <motion.div

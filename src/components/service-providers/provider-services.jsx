@@ -3,6 +3,7 @@ import ServiceCard from "../single-category/service-card";
 import PropTypes from "prop-types";
 
 export default function ProviderServices(services) {
+  console.log(services.provider);
   return (
     <div>
       <div className="grid grid-cols-3 justify-center items-center gap-3">
@@ -13,6 +14,8 @@ export default function ProviderServices(services) {
               key={service.id}
               serviceDescription={service.description}
               serviceTitle={service.serviceName}
+              isProviderProfile
+              provider={services.provider}
             />
           ))
         ) : (
@@ -29,5 +32,6 @@ export default function ProviderServices(services) {
 }
 
 ProviderServices.propTypes = {
-  services: PropTypes.array, // Correctly defining propTypes
+  services: PropTypes.array,
+  provider: PropTypes.object, // Correctly defining propTypes
 };

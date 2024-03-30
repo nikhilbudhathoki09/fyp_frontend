@@ -37,7 +37,7 @@ export default function Button({
         <button
           type={type}
           className={cn(
-            "flex items-center space-x-2 text-sm relative",
+            "flex items-center w-full space-x-2 text-sm relative",
             className
           )}
           disabled={disabled || loading}

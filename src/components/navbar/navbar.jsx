@@ -2,11 +2,10 @@ import { AiOutlineLogout } from "react-icons/ai";
 import Button from "../../components/ui/button";
 import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
 import { useSelector } from "react-redux";
+import { FaUserAlt } from "react-icons/fa";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user);
-
-  console.log(user);
 
   const handleLogout = () => {
     localStorage.removeItem(TOKEN_KEY);
@@ -27,10 +26,12 @@ export default function Navbar() {
             text="Become a Professional"
             className="bg-tertiary rounded-full  px-5 py-3 text-sm"
           />
-          <Button
-            text="For Businesses"
-            className=" hover:bg-tertiary   px-5 py-3 rounded-full"
-          />
+          <a
+            href="/appointments"
+            className="rounded-full hover:bg-tertiary px-5 py-3"
+          >
+            View Appointments
+          </a>
         </div>
         {user.user !== null ? (
           <div className="group relative cursor-pointer">
@@ -38,14 +39,21 @@ export default function Navbar() {
               <img src={"/nopfp.png"} className="w-12 h-12 rounded-full" />
               <p className="capitalize font-semibold"> {user?.user?.name}</p>
             </div>
-            <div className="absolute border opacity-0 group-hover:opacity-100 transition-all duration-300 top-14 p-2 rounded-md right-3">
+            <div className="absolute border flex items-stretch gap-3 flex-col opacity-0 group-hover:opacity-100 transition-all duration-300 top-14 p-2 rounded-md right-3">
               <button
-                className="py-2 px-4 flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md border-transparent bg-primary"
+                className="py-2 px-4  flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md  bg-primary"
                 onClick={handleLogout}
               >
                 <AiOutlineLogout />
                 Logout
               </button>
+              {/* <a
+                href="/profile"
+                className="py-2 px-4 flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md  bg-primary"
+              >
+                <FaUserAlt />
+                Profile
+              </a> */}
             </div>
           </div>
         ) : (
