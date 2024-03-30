@@ -37,7 +37,7 @@ function App() {
             path="/providers/:providerId"
             element={<ServiceProviderPage />}
           />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/appointments" element={<ProfilePage />} />
           <Route path="/all-services" element={<AllServicesSection />} />
         </Routes>
       </Router>

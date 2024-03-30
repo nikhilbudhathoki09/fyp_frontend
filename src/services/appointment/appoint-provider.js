@@ -5,12 +5,18 @@ export default async function appointProvider({
   userId,
   serviceId,
   providerId,
+  data,
 }) {
+  console.log("data got in the function", data);
   try {
     const res = await fetch(
       `http://localhost:8000/api/v1/create-appointment?userId=${userId}&providerId=${providerId}&serviceId=${serviceId}`,
       {
         method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
 
@@ -18,9 +24,10 @@ export default async function appointProvider({
 
     if (!res.ok) {
       toast.error(json.message);
+    } else {
+      toast.success("Appointment created successfully");
+      return json;
     }
-    toast.success("Appointment created successfully");
-    return json;
   } catch (err) {
     toast.error(err.message);
   }

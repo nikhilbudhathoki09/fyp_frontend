@@ -99,8 +99,6 @@ export default function ServiceCard({
       </div>
 
       <BookForm
-        serviceName={serviceTitle}
-        providerName={provider.providerName}
         isOpen={isOpen}
         closeModal={closeModal}
         providerId={provider.providerId}

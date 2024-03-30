@@ -26,10 +26,12 @@ export default function Navbar() {
             text="Become a Professional"
             className="bg-tertiary rounded-full  px-5 py-3 text-sm"
           />
-          <Button
-            text="For Businesses"
-            className=" hover:bg-tertiary   px-5 py-3 rounded-full"
-          />
+          <a
+            href="/appointments"
+            className="rounded-full hover:bg-tertiary px-5 py-3"
+          >
+            View Appointments
+          </a>
         </div>
         {user.user !== null ? (
           <div className="group relative cursor-pointer">
@@ -45,13 +47,13 @@ export default function Navbar() {
                 <AiOutlineLogout />
                 Logout
               </button>
-              <a
+              {/* <a
                 href="/profile"
                 className="py-2 px-4 flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md  bg-primary"
               >
                 <FaUserAlt />
                 Profile
-              </a>
+              </a> */}
             </div>
           </div>
         ) : (
