@@ -12,6 +12,7 @@ import Footer from "./components/footer/footer";
 import ProviderRegister from "./layout/provider-register/provider-register";
 import ProfilePage from "./layout/profile-page";
 import AllServicesSection from "./layout/all-services/all-services-section";
+import Dashboard from "./layout/dashboard/dashboard";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           />
           <Route path="/appointments" element={<ProfilePage />} />
           <Route path="/all-services" element={<AllServicesSection />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
       <Footer />
