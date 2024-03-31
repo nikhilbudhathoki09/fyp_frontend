@@ -11,12 +11,14 @@ import { generateTimeOptions } from "../../utils/get-time-options";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import BookFormImageInput from "../ui/book-form-image-input";
 
 const schema = yup.object().shape({
   description: yup.string().required("Description is required"),
   detailedLocation: yup.string().required("Location is required"),
   arrivalDate: yup.date().required("Date is required"),
   arrivalTime: yup.string().required("Time is required"),
+  appointmentImage: yup.mixed(),
 });
 
 export default function BookForm({
@@ -31,6 +33,7 @@ export default function BookForm({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -115,6 +118,7 @@ export default function BookForm({
                     register={register}
                     error={errors.arrivalDate?.message}
                   />
+                  <BookFormImageInput register={register} image={watch("")} />
 
                   <Button
                     text="Request Now"
