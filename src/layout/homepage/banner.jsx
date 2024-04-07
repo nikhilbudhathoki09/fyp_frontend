@@ -52,7 +52,7 @@ export default function Banner() {
             />
             <a
               href={`/all-services?search=${searchQuery}`}
-              className="bg-button px-6 w-[40%] hover:bg-button/90  py-[10px] rounded-3xl absolute right-[1px] top-[2px] border"
+              className="bg-button px-6 w-[40%] hover:bg-button/90  py-[10px] rounded-3xl absolute right-[1px] top-[1px] border"
             >
               Search Now
             </a>

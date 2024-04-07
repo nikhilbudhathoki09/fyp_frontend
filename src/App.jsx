@@ -1,18 +1,18 @@
+import { Toaster } from "react-hot-toast";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CategoryPage from "./layout/category";
 import HomePageSection from "./layout/homepage/index";
-import ServiceProviderPage from "./layout/service-provider";
 import Login from "./layout/login";
 import Register from "./layout/register";
-import CategoryPage from "./layout/category";
-import { Toaster } from "react-hot-toast";
-
-import Navbar from "./components/navbar/navbar";
+import ServiceProviderPage from "./layout/service-provider";
+// core styles are required for all packages
 import Footer from "./components/footer/footer";
-import ProviderRegister from "./layout/provider-register/provider-register";
-import ProfilePage from "./layout/profile-page";
+import Navbar from "./components/navbar/navbar";
 import AllServicesSection from "./layout/all-services/all-services-section";
-import Dashboard from "./layout/dashboard/dashboard";
+import ProfilePage from "./layout/profile-page";
+import ProviderLandingPage from "./layout/provider-landing-page";
+import ProviderRegister from "./layout/provider-register/provider-register";
 
 function App() {
   return (
@@ -40,7 +40,11 @@ function App() {
           />
           <Route path="/appointments" element={<ProfilePage />} />
           <Route path="/all-services" element={<AllServicesSection />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route
+            path="/provider-landing/:providerId"
+            element={<ProviderLandingPage />}
+          />
         </Routes>
       </Router>
       <Footer />
