@@ -5,10 +5,12 @@ import { useSelector } from "react-redux";
 // import { useParams } from "react-router-dom";
 
 import getUserAppointments from "../../services/appointment/get-user-appointments";
+import SelectedAppointments from "../../components/profile-page/selected-appointments";
 export default function ProfilePage() {
   // const { userId } = useParams();
   const [pendingAppointments, setPendingAppointments] = useState([]);
   const [rejectedAppointments, setRejectedAppointments] = useState([]);
+  const [selectedAppointments, setSelectedAppointments] = useState([]);
 
   const user = useSelector((state) => state.user);
 
@@ -17,6 +19,7 @@ export default function ProfilePage() {
       const res = await getUserAppointments(user?.user?.id || 1);
       setPendingAppointments(res.filter((item) => item.status === "PENDING"));
       setRejectedAppointments(res.filter((item) => item.status === "REJECTED"));
+      setSelectedAppointments(res.filter((item) => item.status === "ACCEPTED"));
     };
 
     fetchData();
@@ -24,6 +27,7 @@ export default function ProfilePage() {
   return (
     <div className="layout space-y-8 py-8 w-full">
       <p className="text-2xl font-semibold">Your Appointments</p>
+      <SelectedAppointments selectedAppointments={selectedAppointments} />
       <div className="flex flex-row justify-between gap-5">
         <PendingAppointments pendingAppointments={pendingAppointments} />
         <RejectedAppointments rejectedAppointments={rejectedAppointments} />

@@ -4,7 +4,7 @@ export default function ProviderRegister() {
   return (
     <div className="relative">
       <div
-        className="z-30 w-full h-[80vh] mb-[450px] bg-cover bg-center relative"
+        className="z-30 w-full h-[130vh] mb-[450px] bg-cover bg-center relative"
         style={{
           backgroundImage: "url(/login-rectangle.png)",
           backgroundRepeat: "no-repeat",
