@@ -73,7 +73,7 @@ export default function AddService() {
       <div className="">
         <form
           className="flex flex-col gap-3"
-          //   onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="text-2xl font-semibold">Add service</h1>
           <hr />
