@@ -1,52 +1,17 @@
 // import React from "react";
 
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Select } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import * as yup from "yup";
+import getAllCategory from "../../services/category/get-all-category";
 import { cn } from "../../utils/utils";
 import Button from "../ui/button";
 import Input from "../ui/input";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import BookFormImageInput from "../ui/book-form-image-input";
-
-// [
-//   {
-//     key: "serviceName",
-//     value: "Tap Repairment",
-//     description: "",
-//     type: "text",
-//     enabled: true,
-//   },
-//   {
-//     key: "perHourRate",
-//     value: "250",
-//     description: "",
-//     type: "text",
-//     enabled: true,
-//   },
-//   {
-//     key: "description",
-//     value: "installation of tap+repairment",
-//     description: "",
-//     type: "text",
-//     enabled: true,
-//   },
-//   {
-//     key: "serviceImage",
-//     description: "",
-//     type: "file",
-//     enabled: true,
-//     value: ["postman-cloud:///1eeeac95-dfe5-4860-bb67-aa2e8fee5be6"],
-//   },
-//   {
-//     key: "categoryName",
-//     value: "Plumbing",
-//     description: "",
-//     type: "text",
-//     enabled: true,
-//   },
-// ];
+import addService from "../../services/service-provider/add-service";
 
 const schema = yup.object().shape({
   serviceName: yup.string().required("Service name is required"),
@@ -58,26 +23,42 @@ const schema = yup.object().shape({
 
 export default function AddService() {
   const [loading, setLoading] = useState(false);
+
+  const user = useSelector((state) => state.user);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const data = await getAllCategory();
+      setCategories(data);
+    };
+    fetchServices();
+  }, []);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
   });
 
+  const onSubmit = async (data) => {
+    console.log(data);
+    setLoading(true);
+    await addService(data, user.user.providerId);
+    setLoading(false);
+  };
+
   return (
     <div>
       <div className="">
         <form
-          className="flex flex-col gap-3"
-          // onSubmit={handleSubmit(onSubmit)}
+          className={cn("flex flex-col gap-3", loading && "blur-sm")}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="text-2xl font-semibold">Add service</h1>
           <hr />
-
           <Input
             type="text"
             className={"px-4 py-3"}
@@ -94,14 +75,20 @@ export default function AddService() {
             register={register}
             error={errors.perHourRate?.message}
           />
-          <Input
-            type="text"
-            className={"px-4 py-3"}
-            placeholder={"Category Name"}
-            id={"categoryName"}
-            register={register}
-            error={errors.categoryName?.message}
-          />
+
+          <select
+            className="px-4 py-3 border  sm:text-sm border-gray-300 focus:outline-primary rounded-md text-text-color-secondary text-xl"
+            {...(register && {
+              ...register("categoryName"),
+            })}
+          >
+            {categories.map((item) => (
+              <option key={item.id} value={item.title}>
+                {item.title}
+              </option>
+            ))}
+          </select>
+
           <Input
             type="text"
             className={"px-4 py-3"}
@@ -110,9 +97,14 @@ export default function AddService() {
             error={errors.detailedLocation?.message}
             placeholder={"Description"}
           />
-
-          <BookFormImageInput register={register} image={watch("")} />
-
+          <span>Service Image</span>
+          <Input
+            type="file"
+            id="serviceImage"
+            register={register}
+            placeholder={"Service Image"}
+            error={errors.serviceImage?.message}
+          />
           <Button
             text="Add Service"
             type="submit"

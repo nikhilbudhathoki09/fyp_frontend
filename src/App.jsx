@@ -13,6 +13,7 @@ import AllServicesSection from "./layout/all-services/all-services-section";
 import ProfilePage from "./layout/profile-page";
 import ProviderLandingPage from "./layout/provider-landing-page";
 import ProviderRegister from "./layout/provider-register/provider-register";
+import ProviderLogin from "./layout/login/provider-login";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePageSection />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/login-provider" element={<ProviderLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/become-a-professional" element={<ProviderRegister />} />
 
