@@ -2,7 +2,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 import Button from "../../components/ui/button";
 import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
 import { useSelector } from "react-redux";
-import { FaUserAlt } from "react-icons/fa";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user);
@@ -12,6 +11,8 @@ export default function Navbar() {
     localStorage.removeItem(USER_KEY);
     window.location.replace("/login");
   };
+
+  console.log(user);
 
   return (
     <div className=" bg-primary  text-white  py-6 z-40">
@@ -36,8 +37,16 @@ export default function Navbar() {
         {user.user !== null ? (
           <div className="group relative cursor-pointer">
             <div className="flex flex-row items-center gap-2">
-              <img src={"/nopfp.png"} className="w-12 h-12 rounded-full" />
-              <p className="capitalize font-semibold"> {user?.user?.name}</p>
+              <img
+                src={
+                  user.user.userImage || user.user.providerImage || "/nopfp.png"
+                }
+                className="w-12 h-12 rounded-full"
+              />
+              <p className="capitalize font-semibold">
+                {" "}
+                {user?.user?.name || user.user.providerName}
+              </p>
             </div>
             <div className="absolute border flex items-stretch gap-3 flex-col opacity-0 group-hover:opacity-100 transition-all duration-300 top-14 p-2 rounded-md right-3">
               <button

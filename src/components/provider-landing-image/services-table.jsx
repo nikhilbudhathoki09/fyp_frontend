@@ -1,21 +1,52 @@
 import { Table } from "@mantine/core";
 import "@mantine/core/styles.css";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { LuTrash } from "react-icons/lu";
+import EditServiceForm from "./edit-service-form";
+import { useSelector } from "react-redux";
 
-const elements = [
-  { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-  { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-  { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-  { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-  { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
-];
+export default function ServicesTable({ allServices }) {
+  console.log(allServices);
 
-export default function ServicesTable() {
-  const rows = elements.map((element) => (
-    <Table.Tr key={element.name} className="text-base">
-      <Table.Td>{element.position}</Table.Td>
-      <Table.Td>{element.name}</Table.Td>
-      <Table.Td>{element.symbol}</Table.Td>
-      <Table.Td>{element.mass}</Table.Td>
+  const user = useSelector((state) => state.user);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  const rows = allServices.map((element) => (
+    <Table.Tr key={element.id} className="text-base">
+      <Table.Td>{element.id}</Table.Td>
+      <Table.Td>{element.serviceName}</Table.Td>
+      <Table.Td>Rs {element.perHourRate}</Table.Td>
+      <Table.Td>{element.description}</Table.Td>
+      <Table.Td>
+        {element.serviceImage !== null ? (
+          <img
+            src={element.serviceImage}
+            className="w-32 h-28 object-contain bg-black"
+          />
+        ) : (
+          <p>No image</p>
+        )}
+      </Table.Td>
+
+      <Table.Td>
+        <div className="flex flex-row gap-3 items-center">
+          <FaRegEdit
+            className="text-primary cursor-pointer hover:scale-110 transition-all duration-300"
+            size={25}
+          />
+          <LuTrash
+            className="text-red-500 cursor-pointer hover:scale-110 transition-all duration-300"
+            size={25}
+          />
+        </div>
+      </Table.Td>
     </Table.Tr>
   ));
   return (
@@ -26,14 +57,25 @@ export default function ServicesTable() {
       <Table withTableBorder withColumnBorders border={8} cellPadding={10}>
         <Table.Thead>
           <Table.Tr className=" text-lg  bg-gray-300">
-            <Table.Th>S.N.</Table.Th>
+            <Table.Th>I.D.</Table.Th>
             <Table.Th>Service name</Table.Th>
-            <Table.Th>Price</Table.Th>
-            <Table.Th>Atomic mass</Table.Th>
+            <Table.Th>Price / hr</Table.Th>
+            <Table.Th>Description</Table.Th>
+            <Table.Th>Service Image</Table.Th>
+            <Table.Th>Actions</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
+      <EditServiceForm
+        closeModal={closeModal}
+        isOpen={modalOpen}
+        providerId={user.user.providerId}
+      />
     </div>
   );
 }
+
+ServicesTable.propTypes = {
+  allServices: PropTypes.array,
+};

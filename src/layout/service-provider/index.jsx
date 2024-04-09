@@ -18,13 +18,10 @@ export default function ServiceProviderPage() {
   useEffect(() => {
     const fetchDetails = async () => {
       const res = await getSingleProvider(providerId);
-      console.log(res);
       setData(res);
     };
     fetchDetails();
   }, [providerId]);
-
-  console.log(data);
 
   return (
     <div>

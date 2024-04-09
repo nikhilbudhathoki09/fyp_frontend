@@ -6,8 +6,8 @@ import Sidebar from "./sidebar";
 import { useParams } from "react-router-dom";
 
 export default function ProviderLandingPage() {
-  const { id } = useParams();
-  const [selectedTab, setSelectedTab] = useState("dashboard");
+  const { providerId } = useParams();
+  const [selectedTab, setSelectedTab] = useState("Dashboard");
   return (
     <div className="layout py-16 w-full ">
       <div className="flex flex-row relative min-h-[100vh] w-full gap-5 ">
@@ -15,7 +15,7 @@ export default function ProviderLandingPage() {
           <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         </div>
         <div className="w-[75%] border rounded-md">
-          <ContentArea selectedTab={selectedTab} />
+          <ContentArea selectedTab={selectedTab} providerId={providerId} />
         </div>
       </div>
     </div>
