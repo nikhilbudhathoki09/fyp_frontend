@@ -1,17 +1,16 @@
 // import React from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Select } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
 import getAllCategory from "../../services/category/get-all-category";
+import addService from "../../services/service-provider/add-service";
 import { cn } from "../../utils/utils";
 import Button from "../ui/button";
 import Input from "../ui/input";
-import addService from "../../services/service-provider/add-service";
 
 const schema = yup.object().shape({
   serviceName: yup.string().required("Service name is required"),
@@ -65,7 +64,7 @@ export default function AddService() {
             placeholder={"Service Name"}
             id={"serviceName"}
             register={register}
-            error={errors.description?.message}
+            error={errors.categoryName?.message}
           />
           <Input
             type="text"

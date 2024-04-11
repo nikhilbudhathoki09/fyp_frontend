@@ -5,20 +5,22 @@ import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { LuTrash } from "react-icons/lu";
 import EditServiceForm from "./edit-service-form";
-import { useSelector } from "react-redux";
 
 export default function ServicesTable({ allServices }) {
   console.log(allServices);
 
-  const user = useSelector((state) => state.user);
-
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState({});
 
   function closeModal() {
     setModalOpen(false);
   }
 
-  const rows = allServices.map((element) => (
+  const handleEditClick = (service) => {
+    setModalOpen(true);
+    setSelectedService(service);
+  };
+  const rows = allServices?.map((element) => (
     <Table.Tr key={element.id} className="text-base">
       <Table.Td>{element.id}</Table.Td>
       <Table.Td>{element.serviceName}</Table.Td>
@@ -40,6 +42,7 @@ export default function ServicesTable({ allServices }) {
           <FaRegEdit
             className="text-primary cursor-pointer hover:scale-110 transition-all duration-300"
             size={25}
+            onClick={() => handleEditClick(element)}
           />
           <LuTrash
             className="text-red-500 cursor-pointer hover:scale-110 transition-all duration-300"
@@ -70,7 +73,8 @@ export default function ServicesTable({ allServices }) {
       <EditServiceForm
         closeModal={closeModal}
         isOpen={modalOpen}
-        providerId={user.user.providerId}
+        serviceId={selectedService.id}
+        serviceName={selectedService.serviceName}
       />
     </div>
   );

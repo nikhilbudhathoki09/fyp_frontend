@@ -1,7 +1,7 @@
 // import React from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { cn } from "../../utils/utils";
 import Button from "../ui/button";
@@ -9,20 +9,28 @@ import Input from "../ui/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import addService from "../../services/service-provider/add-service";
 import PropTypes from "prop-types";
+import getAllCategory from "../../services/category/get-all-category";
+import editService from "../../services/service-provider/edit-service";
 
 const schema = yup.object().shape({
-  serviceName: yup.string().required("Service name is required"),
-  perHourRate: yup.number().required("Price is required"),
-  description: yup.string().required("Description is required"),
+  serviceName: yup.string(),
+  perHourRate: yup.number(),
+  description: yup.string(),
   serviceImage: yup.mixed(),
-  categoryName: yup.string().required("Category is required"),
+  categoryName: yup.string(),
 });
 
-export default function EditServiceForm({ isOpen, closeModal, providerId }) {
+export default function EditServiceForm({
+  isOpen,
+  closeModal,
+  serviceId,
+  serviceName,
+}) {
+  console.log(serviceId);
   const [loading, setLoading] = useState(false);
-  console.log(providerId);
+  const [categories, setCategories] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -32,10 +40,17 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
     mode: "all",
   });
 
+  useEffect(() => {
+    const fetchServices = async () => {
+      const data = await getAllCategory();
+      setCategories(data);
+    };
+    fetchServices();
+  }, []);
   const onSubmit = async (data) => {
     console.log(data);
     setLoading(true);
-    await addService(data);
+    await editService(data, serviceId);
     setLoading(false);
   };
 
@@ -53,31 +68,33 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
         >
           <div className="fixed inset-0 bg-black/75" />
         </Transition.Child>
-        <div className="">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <Dialog.Panel>
-              <form
-                className="flex flex-col gap-3"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <h1 className="text-2xl font-semibold">Add service</h1>
-                <hr />
 
+        <div className="fixed inset-0 overflow-y-auto">
+          <form
+            className="flex min-h-full items-center justify-center p-4 text-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <h1 className="text-2xl font-semibold">
+                  Edit service {serviceName}
+                </h1>
+                <hr />
                 <Input
                   type="text"
                   className={"px-4 py-3"}
                   placeholder={"Service Name"}
                   id={"serviceName"}
                   register={register}
-                  error={errors.description?.message}
+                  error={errors.categoryName?.message}
                 />
                 <Input
                   type="text"
@@ -87,14 +104,20 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
                   register={register}
                   error={errors.perHourRate?.message}
                 />
-                <Input
-                  type="text"
-                  className={"px-4 py-3"}
-                  placeholder={"Category Name"}
-                  id={"categoryName"}
-                  register={register}
-                  error={errors.categoryName?.message}
-                />
+
+                <select
+                  className="px-4 py-3 border  sm:text-sm border-gray-300 focus:outline-primary rounded-md text-text-color-secondary text-xl"
+                  {...(register && {
+                    ...register("categoryName"),
+                  })}
+                >
+                  {categories.map((item) => (
+                    <option key={item.id} value={item.title}>
+                      {item.title}
+                    </option>
+                  ))}
+                </select>
+
                 <Input
                   type="text"
                   className={"px-4 py-3"}
@@ -111,9 +134,8 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
                   placeholder={"Service Image"}
                   error={errors.serviceImage?.message}
                 />
-
                 <Button
-                  text="Add Service"
+                  text="Edit Service"
                   type="submit"
                   icon={
                     <FaSpinner
@@ -123,9 +145,9 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
                   loading={loading}
                   className="flex w-full justify-center bg-black rounded-lg p-3 text-white"
                 />
-              </form>
-            </Dialog.Panel>
-          </Transition.Child>
+              </Dialog.Panel>
+            </Transition.Child>
+          </form>
         </div>
       </Dialog>
     </Transition>
@@ -135,5 +157,6 @@ export default function EditServiceForm({ isOpen, closeModal, providerId }) {
 EditServiceForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  providerId: PropTypes.number,
+  serviceId: PropTypes.number,
+  serviceName: PropTypes.string,
 };

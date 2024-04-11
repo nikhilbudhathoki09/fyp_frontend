@@ -25,7 +25,9 @@ export default function ContentArea({ selectedTab = "Dashboard", providerId }) {
         <ServicesTable allServices={data.allServices} />
       )}
       {selectedTab === "Add Service" && <AddService />}
-      {selectedTab === "Appooitments" && <ServicesTable />}
+      {selectedTab === "Appooitments" && (
+        <ServicesTable allServices={data.allServices} />
+      )}
       {selectedTab === "settings" && <Settings />}
     </div>
   );

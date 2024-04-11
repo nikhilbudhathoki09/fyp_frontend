@@ -25,11 +25,10 @@ export default async function loginProvider(data) {
 
     localStorage.setItem(TOKEN_KEY, json.access_token);
     localStorage.setItem(USER_KEY, JSON.stringify(json.provider));
-    console.log(json);
 
     document.cookie = `token=${json.access_token}`;
 
-    window.location.href = `providers/${json.provider.providerId}`;
+    window.location.href = `provider-landing/${json.provider.providerId}`;
 
     toast.success("Logged in successfully");
   } catch (err) {
