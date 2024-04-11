@@ -14,7 +14,7 @@ export default function BookFormImageInput({ register, image }) {
         type="file"
         accept="image/png, image/jpeg, image/jpg, image/gif, image/svg+xml, image/webp"
         {...(register && {
-          ...register("userImage"),
+          ...register("appointmentImage"),
         })}
         required={false}
       />

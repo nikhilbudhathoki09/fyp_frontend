@@ -47,9 +47,9 @@ export default function ProviderLoginForm() {
         I don&apos;t have an account?
         <a
           className="text-primary underline ml-2 font-semibold"
-          href="/register"
+          href="/become-a-professional"
         >
-          Register Now
+          Register Now as Provider
         </a>
       </p>
       <form

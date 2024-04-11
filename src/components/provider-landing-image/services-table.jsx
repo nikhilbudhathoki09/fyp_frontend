@@ -7,8 +7,6 @@ import { LuTrash } from "react-icons/lu";
 import EditServiceForm from "./edit-service-form";
 
 export default function ServicesTable({ allServices }) {
-  console.log(allServices);
-
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState({});
 
