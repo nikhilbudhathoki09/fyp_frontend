@@ -41,9 +41,14 @@ export default function BookForm({
   });
   const onSubmit = async (formData) => {
     setLoading(true);
-    const newData = { ...formData, providerId: providerId };
+
+    const formattedDate = new Date(formData.arrivalDate)
+      .toISOString()
+      .split("T")[0];
+    console.log(formattedDate);
+
     await appointProvider({
-      data: newData,
+      data: { ...formData, arrivalDate: formattedDate },
       userId: userId,
       providerId: providerId,
       serviceId: serviceId,
@@ -51,8 +56,6 @@ export default function BookForm({
     close();
     setLoading(false);
   };
-
-  console.log(userId, serviceId, providerId);
 
   return (
     <div>

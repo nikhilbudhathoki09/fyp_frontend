@@ -20,8 +20,9 @@ export default function ServiceCard({
   id,
 }) {
   const user = useSelector((state) => state.user);
-  console.log(user);
   let [isOpen, setIsOpen] = useState(false);
+
+  console.log(id);
 
   function closeModal() {
     setIsOpen(false);
@@ -44,13 +45,13 @@ export default function ServiceCard({
       {!isProviderProfile && (
         <div className="flex items-center gap-4">
           <img
-            src={provider.providerImage || "/nopfp.png"}
+            src={provider?.providerImage || "/nopfp.png"}
             className="w-16  h-16 border border-green-500 rounded-full object-cover"
           />
           {provider && (
             <div className="flex flex-col">
               <h1 className="text-base font-semibold">
-                {provider.providerName}
+                {provider?.providerName || "N/A"}
               </h1>
               <p className="text-sm flex items-center gap-1 font-light">
                 <MdOutlineLocationOn color="#7950f2" size={20} />

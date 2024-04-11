@@ -61,8 +61,8 @@ export default function ProviderRegisterFrom() {
       </h3>
       <p className="text-base mt-3 text-text-color-secondary ">
         I already have an account?
-        <a className="text-primary underline ml-2 font-semibold" href="/login">
-          Login Now
+        <a className="text-primary underline ml-2 font-semibold" href="/login-provider">
+          Login Now as Provider
         </a>
       </p>
       <form
