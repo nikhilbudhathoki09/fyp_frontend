@@ -19,16 +19,14 @@ export default async function addService(data, providerId) {
       }
     );
 
-    const json = await res.json();
 
-    console.log(json);
 
     if (!res.ok) {
       toast.error("Service added successfully");
       return;
     }
 
-    toast.success(json.message);
+    toast.success("Service added successfully");
   } catch (err) {
     console.log(err);
 
