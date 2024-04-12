@@ -6,7 +6,7 @@ import RecommendedProviderSection from "../../components/recommended-providers/r
 
 export default function HomePageSection() {
   return (
-    <div className="space-y-14">
+    <div className="">
       <Banner />
       <CategoriesSectionHome />
       <RecommendedProviderSection />

@@ -1,4 +1,4 @@
-import { BarChart, PieChart } from "@mantine/charts";
+// import { BarChart, PieChart } from "@mantine/charts";
 import "@mantine/charts/styles.css";
 import { IoBagOutline } from "react-icons/io5";
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      <div className="flex  pt-10 flex-row items-center gap-10">
+      {/* <div className="flex  pt-10 flex-row items-center gap-10">
         <BarChart
           h={300}
           className=" shadow-xl p-3"
@@ -61,7 +61,7 @@ export default function Dashboard() {
             labelsType="value"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
