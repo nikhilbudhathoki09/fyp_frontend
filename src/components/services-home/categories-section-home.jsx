@@ -14,7 +14,7 @@ export default function CategoriesSectionHome() {
   }, []);
 
   return (
-    <div className="flex w-full flex-col gap-6 relative  text-black   items-center justify-center py-6 layout ">
+    <div className="flex w-full flex-col gap-6 relative  text-black   items-center justify-center py-6 my-14 layout ">
       <h3 className="text-3xl font-semibold">Services</h3>
       <img src="/storke.png" className="absolute top-12" />
 

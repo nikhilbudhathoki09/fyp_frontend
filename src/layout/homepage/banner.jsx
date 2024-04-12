@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Banner() {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <div className=" bg-primary text-white  py-6 ">
+    <div className=" bg-primary text-white  py-14 ">
       <div className="layout flex w-full flex-row gap-2 items-center ">
         <motion.div
           variants={{

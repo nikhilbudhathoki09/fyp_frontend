@@ -6,7 +6,6 @@ export default function StatisticsSection() {
         backgroundImage: "url(/bottombg.png)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        mixBlendMode: "hard-light",
       }}
     >
       <p className="text-center text-3xl font-semibold "> Our Statistics</p>
