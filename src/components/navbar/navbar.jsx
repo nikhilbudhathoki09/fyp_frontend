@@ -12,8 +12,6 @@ export default function Navbar() {
     window.location.replace("/login");
   };
 
-  console.log(user);
-
   return (
     <div className=" bg-primary  text-white  py-6 z-40">
       <div className="layout flex flex-row justify-between items-center">
