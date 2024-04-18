@@ -6,6 +6,7 @@ export default async function editDetails(providerId, data) {
       `http://localhost:8000/api/v1/providers/${providerId}`,
       {
         method: "PUT",
+        body: JSON.stringify(data),
         "Content-Type": "application/json",
       }
     );
@@ -15,7 +16,7 @@ export default async function editDetails(providerId, data) {
       return;
     }
 
-    toast.success("Appointment updated successfully");
+    toast.success("Provider details updated successfully");
   } catch (err) {
     console.log(err);
 
