@@ -1,21 +1,20 @@
 // import { BarChart, PieChart } from "@mantine/charts";
-import "@mantine/charts/styles.css";
+import { BarChart, LineChart } from "@mui/x-charts";
 import { IoBagOutline } from "react-icons/io5";
 
-export const data = [
-  { month: "January", Smartphones: 1200, Laptops: 900, Tablets: 200 },
-  { month: "February", Smartphones: 1900, Laptops: 1200, Tablets: 400 },
-  { month: "March", Smartphones: 400, Laptops: 1000, Tablets: 200 },
-];
-
-export const pie_data = [
-  { name: "USA", value: 400, color: "indigo.6" },
-  { name: "India", value: 300, color: "yellow.6" },
-  { name: "Japan", value: 300, color: "teal.6" },
-  { name: "Other", value: 200, color: "gray.6" },
-];
-
 export default function Dashboard() {
+  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
+  const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
+  const xLabels = [
+    "Page A",
+    "Page B",
+    "Page C",
+    "Page D",
+    "Page E",
+    "Page F",
+    "Page G",
+  ];
+
   return (
     <div className="space-y-3">
       <h1 className="text-2xl font-bold">Dashboard</h1>
@@ -38,30 +37,29 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      {/* <div className="flex  pt-10 flex-row items-center gap-10">
+      <div className="flex gap-5 shadow-lg">
         <BarChart
-          h={300}
-          className=" shadow-xl p-3"
-          data={data}
-          w={500}
-          dataKey="month"
-          series={[
-            { name: "Smartphones", color: "violet.6" },
-            { name: "Laptops", color: "blue.6" },
-            { name: "Tablets", color: "teal.6" },
+          xAxis={[
+            { scaleType: "band", data: ["group A", "group B", "group C"] },
           ]}
-          tickLine="y"
+          series={[
+            { data: [4, 3, 5] },
+            { data: [1, 6, 3] },
+            { data: [2, 5, 6] },
+          ]}
+          width={450}
+          height={300}
         />
-        <div className="p-3 shadow-xl ">
-          <PieChart
-            data={pie_data}
-            size={250}
-            withLabelsLine
-            labelsPosition="inside"
-            labelsType="value"
-          />
-        </div>
-      </div> */}
+        <LineChart
+          width={450}
+          height={300}
+          series={[
+            { data: pData, label: "pv" },
+            { data: uData, label: "uv" },
+          ]}
+          xAxis={[{ scaleType: "point", data: xLabels }]}
+        />
+      </div>
     </div>
   );
 }
