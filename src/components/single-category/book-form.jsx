@@ -1,17 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import PropTypes from "prop-types";
-import Button from "../ui/button";
-import appointProvider from "../../services/appointment/appoint-provider";
-import { FaSpinner } from "react-icons/fa";
-import { cn } from "../../utils/utils";
-import Select from "../ui/select";
-import Input from "../ui/input";
-import { generateTimeOptions } from "../../utils/get-time-options";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import PropTypes from "prop-types";
+import { Fragment, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 import * as yup from "yup";
+import appointProvider from "../../services/appointment/appoint-provider";
+import { generateTimeOptions } from "../../utils/get-time-options";
+import { cn } from "../../utils/utils";
 import BookFormImageInput from "../ui/book-form-image-input";
+import Button from "../ui/button";
+import Input from "../ui/input";
+import Select from "../ui/select";
 
 const schema = yup.object().shape({
   description: yup.string().required("Description is required"),
@@ -30,6 +30,7 @@ export default function BookForm({
   close,
 }) {
   const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -39,13 +40,13 @@ export default function BookForm({
     resolver: yupResolver(schema),
     mode: "all",
   });
+
   const onSubmit = async (formData) => {
     setLoading(true);
 
     const formattedDate = new Date(formData.arrivalDate)
       .toISOString()
       .split("T")[0];
-    console.log(formattedDate);
 
     await appointProvider({
       data: { ...formData, arrivalDate: formattedDate },
@@ -113,6 +114,7 @@ export default function BookForm({
                     error={errors.detailedLocation?.message}
                     placeholder={"Location"}
                   />
+
                   <Input
                     type="date"
                     className={"px-4 py-3"}
