@@ -1,10 +1,10 @@
 // import { TRegisterForm } from "#/components/login/register-form";
 import { toast } from "react-hot-toast";
 
-export default async function getFilteredServices(categoryId, locationId) {
+export default async function getRatings(id) {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/v1/services/filter-services/?categoryId=${categoryId}&locationId=${locationId}`,
+      `http://localhost:8000/api/v1/ratings/provider/${id}`,
       {
         method: "GET",
       }
@@ -17,7 +17,6 @@ export default async function getFilteredServices(categoryId, locationId) {
     }
     return json;
   } catch (err) {
-    console.log(err);
     toast.error(err.message);
   }
 }

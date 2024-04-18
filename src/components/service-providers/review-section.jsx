@@ -1,7 +1,21 @@
 import { FaStar, FaStarHalfStroke } from "react-icons/fa6";
 import ReviewCard from "./review-card";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import getRatings from "../../services/service-provider/get-ratings";
 
-export default function ReviewSection() {
+export default function ReviewSection({ providerId }) {
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const res = await getRatings(providerId);
+      setReviews(res);
+    };
+    fetchReviews();
+  }, [providerId]);
+
+  console.log(reviews);
   return (
     <div className="px-36">
       <div className="flex gap-20 py-6">
@@ -53,12 +67,23 @@ export default function ReviewSection() {
       <p className="font-semibold">Reviews</p>
       <br />
       <div className="space-y-4">
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <ReviewCard
+              key={review.id}
+              date={review.reviewDate}
+              rating={review.rating}
+              review={review.comment}
+            />
+          ))
+        ) : (
+          <p>No reviews available</p>
+        )}
       </div>
     </div>
   );
 }
+
+ReviewSection.propTypes = {
+  providerId: PropTypes.number,
+};
