@@ -23,6 +23,8 @@ export default function ServiceProviderPage() {
     fetchDetails();
   }, [providerId]);
 
+  console.log(data);
+
   return (
     <div>
       <div className="bg-white-bg pt-10 space-y-10">
@@ -66,8 +68,16 @@ export default function ServiceProviderPage() {
             provider={data?.categories?.allProviders?.[0] || {}}
           />
         )}
-        {selectedTab === "overview" && <Overview />}
-        {selectedTab === "review" && <ReviewSection />}
+        {selectedTab === "overview" && (
+          <Overview
+            description={data.description}
+            experience={data.yearOfExperience}
+            servicesCount={data.minServicePrice}
+          />
+        )}
+        {selectedTab === "review" && (
+          <ReviewSection providerId={Number(providerId)} />
+        )}
       </div>
     </div>
   );

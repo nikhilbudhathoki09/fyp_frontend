@@ -1,31 +1,31 @@
-export default function Overview() {
+import PropType from "prop-types";
+
+export default function Overview({
+  description,
+  ratingsCount,
+  servicesCount,
+  experience,
+}) {
   return (
-    <div className="  flex flex-row gap-4">
-      <div className="text-justify pr-20 border-r-2 border-gray-300">
-        <p>
-          Introduction: Apex Plumbing strives to provide exceptional service at
-          affordable prices. We are a veteran owned and operated company that
-          prioritizes customer service and putting the customer first! Apex
-          Plumbing specializes in Emergency Plumbing Services and resolving your
-          issues in a timely manner.
-        </p>
-        <br />
-        <p>
-          Apex Plumbing strives to provide exceptional service at affordable
-          prices. We are a veteran owned and operated company that prioritizes
-          customer service and putting the customer first! Apex Plumbing
-          specializes in Emergency Plumbing Services and resolving your issues
-          in a timely manner.
-        </p>
+    <div className="flex flex-row gap-4 w-full">
+      <div className="text-justify pr-20 border-r-2 w-[80%] border-gray-300">
+        <p>{description || "N/A"}</p>
       </div>
       <div className="space-y-3 whitespace-nowrap pr-20">
         <p>
           <strong>Overview</strong>
         </p>
-        <p>Hired 87 times</p>
-        <p>30 employee</p>
-        <p>5 year in business</p>
+        <p>{experience || 1}+ years experience</p>
+        <p>{servicesCount || 1} + services</p>
+        <p>Starting from ${ratingsCount || 1} </p>
       </div>
     </div>
   );
 }
+
+Overview.propTypes = {
+  description: PropType.string.isRequired,
+  servicesCount: PropType.number,
+  ratingsCount: PropType.number,
+  experience: PropType.number,
+};
