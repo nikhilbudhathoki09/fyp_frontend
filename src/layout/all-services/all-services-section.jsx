@@ -30,7 +30,7 @@ export default function AllServicesSection() {
         <h3 className="text-3xl font-semibold"> All Services</h3>
         <img src="/storke.png" className="absolute top-6 left-[43%]" />
       </div>
-      <div className="flex flex-wrap justify-between gap-6">
+      <div className="flex flex-wrap justify-between">
         {Array.isArray(services) && services.length !== 0 ? (
           services.map((service) => (
             <ServiceCard
@@ -48,7 +48,7 @@ export default function AllServicesSection() {
         ) : (
           <div className="border border-red-500 flex flex-col gap-3 items-center rounded-md justify-center w-full h-[45vh]">
             <p className="text-xl font-semibold text-red-400">
-              No services at the moment
+              No services at the moment matching &quot;{searchValue}&quot;
             </p>
             <MdNotAccessible color="red" size={40} />
           </div>
