@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../ui/button";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
@@ -8,9 +7,9 @@ export default function SelectedAppointments({ selectedAppointments }) {
     <div className="flex w-full flex-col border-2 border-green-400 rounded-md p-4">
       <p className="uppercase font-bold text-green-400">APPROVED</p>
       <br />
-      <div className="grid grid-cols-2 items-center gap-5 ">
-        {selectedAppointments.length !== 0 ? (
-          selectedAppointments.map((data, index) => (
+      <div className="grid grid-cols-3 items-center gap-5 ">
+        {selectedAppointments?.length !== 0 ? (
+          selectedAppointments?.map((data, index) => (
             <div
               className="flex flex-col gap-4 shadow-md bg-white p-6 border-transparent border hover:border-yellow-400 transition-all duration-300 rounded-md"
               key={index}
@@ -44,6 +43,6 @@ export default function SelectedAppointments({ selectedAppointments }) {
   );
 }
 
-SelectedAppointments.prototype = {
-  selectedAppointments: PropTypes.array,
+SelectedAppointments.propTypes = {
+  selectedAppointments: PropTypes.array.isRequired,
 };

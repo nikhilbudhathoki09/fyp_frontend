@@ -15,6 +15,7 @@ import ProviderLandingPage from "./layout/provider-landing-page";
 import ProviderRegister from "./layout/provider-register/provider-register";
 import ProviderLogin from "./layout/login/provider-login";
 import UserSettingsPage from "./layout/settings-user";
+import ResetPassword from "./layout/reset-password";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login-provider" element={<ProviderLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/become-a-professional" element={<ProviderRegister />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/settings" element={<UserSettingsPage />} />
