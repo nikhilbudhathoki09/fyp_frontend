@@ -19,7 +19,7 @@ export default function Select({
         <select
           placeholder={placeholder}
           className={cn(
-            "block w-full py-5 px-14 border focus:outline-primary sm:text-sm border-gray-300 rounded-md text-text-color-secondary text-xl",
+            "block w-full py-4 px-14 border focus:outline-primary sm:text-sm border-gray-300 rounded-md text-text-color-secondary text-xl",
             className
           )}
           {...(register && {
