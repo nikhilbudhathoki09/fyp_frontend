@@ -11,6 +11,7 @@ export default function Input({
   className,
   register,
   error,
+  defaultValue,
   required,
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +47,7 @@ export default function Input({
         <input
           type={showPassword ? "text" : type}
           placeholder={placeholder}
+          defaultValue={defaultValue}
           className={cn(
             "block w-full py-5 pl-14 border  sm:text-sm border-gray-300 focus:outline-primary rounded-md text-text-color-secondary text-xl",
             className,
@@ -84,4 +86,5 @@ Input.propTypes = {
   register: PropTypes.func,
   id: PropTypes.string,
   required: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };

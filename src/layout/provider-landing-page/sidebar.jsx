@@ -19,7 +19,7 @@ const data = [
   },
   {
     key: "Appooitments",
-    value: "Appooitments",
+    value: "Appointments",
     icon: <RiReservedFill />,
   },
   {
