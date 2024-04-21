@@ -90,16 +90,14 @@ export default function ServiceCard({
           />
         )}
 
-        {user !== null &&
-          user.user !== null &&
-          user.user.userId === provider.providerId && (
-            <Button
-              text="Book Now"
-              className="px-8 py-3  bg-button rounded-full text-white"
-              icon={<FaArrowRight />}
-              onClick={openModal}
-            />
-          )}
+        {user !== null && user.user !== null && user.user.userId !== null && (
+          <Button
+            text="Book Now"
+            className="px-8 py-3  bg-button rounded-full text-white"
+            icon={<FaArrowRight />}
+            onClick={openModal}
+          />
+        )}
       </div>
 
       {user !== null &&
