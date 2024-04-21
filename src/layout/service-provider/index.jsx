@@ -7,6 +7,7 @@ import ProviderServices from "../../components/service-providers/provider-servic
 import Overview from "../../components/service-providers/overview";
 import ReviewSection from "../../components/service-providers/review-section";
 import getSingleProvider from "../../services/service-provider/get-single-provider";
+import RecommendedProviderSection from "../../components/recommended-providers/recommended-providers-section";
 
 export default function ServiceProviderPage() {
   const { providerId } = useParams();
@@ -23,18 +24,13 @@ export default function ServiceProviderPage() {
     fetchDetails();
   }, [providerId]);
 
-  console.log(data);
-
   return (
     <div>
       <div className="bg-white-bg pt-10 space-y-10">
         <div className="layout">
           <div className="w-full  flex flex-row items-center gap-5">
             <img
-              src={
-                data?.categories?.allProviders?.[0]?.providerImage ||
-                "/nopfp.png"
-              }
+              src={data.providerImage || "/nopfp.png"}
               alt="provider"
               className="rounded-md w-40 h-40 object-contain bg-black "
             />
@@ -79,6 +75,14 @@ export default function ServiceProviderPage() {
           <ReviewSection providerId={Number(providerId)} />
         )}
       </div>
+      <br />
+      <hr />
+      <br />
+      <RecommendedProviderSection />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

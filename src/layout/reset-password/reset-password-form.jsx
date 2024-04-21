@@ -1,41 +1,35 @@
 import { FaLock } from "react-icons/fa";
-import loginUser from "../../services/auth/login-user";
-
-import { useForm } from "react-hook-form";
-
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Input } from "@mantine/core";
 import { useState } from "react";
-import * as yup from "yup";
+import { useLocation } from "react-router-dom";
 import Button from "../../components/ui/button";
+import changePassword from "../../services/user/change-password";
 import { cn } from "../../utils/utils";
-
-const schema = yup.object().shape({
-  email: yup.string().email().required("Email is required"),
-  password: yup
-    .string()
-    .min(8)
-    .required("Password is required and should be 8 characters long"),
-});
+import toast from "react-hot-toast";
 
 export default function ResetPasswordForm() {
   // const dispatch = useDispatch();
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const searchValue = searchParams.get("token");
   const [loading, setLoading] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "all",
-  });
+  const [newPassword, setNewPassword] = useState("");
 
-  const onSubmit = async (data) => {
-    // e.preventDefault();
+  const onSubmit = async () => {
     setLoading(true);
-    await loginUser(data);
+    if (searchValue === null) {
+      setLoading(false);
+      return toast.error("Invalid token");
+    }
+    if (newPassword.length < 6) {
+      setLoading(false);
+      return toast.error("Password must be at least 6 characters long");
+    }
+    await changePassword({ password: newPassword }, searchValue);
 
     setLoading(false);
   };
@@ -47,22 +41,19 @@ export default function ResetPasswordForm() {
       </h3>
       <hr />
 
-      <form
-        className={cn("space-y-5 mt-4 mb-2", loading && "blur-sm")}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className={cn("space-y-5 mt-4 mb-2", loading && "blur-sm")}>
         <Input
           type="password"
           size="lg"
           icon={<FaLock className="text-2xl py-5 text-primary" />}
           placeholder={"New Password"}
           id={"password"}
-          register={register}
-          error={errors.password?.message}
+          onChange={(e) => setNewPassword(e.target.value)}
         />
         <Button
-          type="submit"
           text="Reset now"
+          disabled={searchValue === null || newPassword.length < 6}
+          onClick={onSubmit}
           loading={loading}
           className="bg-primary flex justify-center hover:bg-tertiary cursor-pointer w-full py-4 text-center rounded-2xl text-white-bg text-xl"
         />

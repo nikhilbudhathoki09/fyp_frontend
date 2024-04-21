@@ -12,7 +12,7 @@ export default function RecommendedProviderSection() {
         <img src="/storke.png" className="absolute top-12" />
       </div>
       <div className="grid w-full items-center justify-between gap-16 grid-cols-3">
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <div
             key={i}
             className="group rounded-lg relative shadow-lg flex flex-col gap-3 items-center bg-white-bg p-4"

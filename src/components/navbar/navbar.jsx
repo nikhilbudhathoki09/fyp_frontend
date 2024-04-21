@@ -3,9 +3,13 @@ import Button from "../../components/ui/button";
 import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
 import { useSelector } from "react-redux";
 import { IoSettingsOutline } from "react-icons/io5";
+import resetPassword from "../../services/user/reset-password";
+import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem(TOKEN_KEY);
@@ -13,7 +17,16 @@ export default function Navbar() {
     window.location.replace("/login");
   };
 
-  console.log(user);
+  const handleResetPassword = async () => {
+    // implement reset password
+    setLoading(true);
+    const data = {
+      email: user.user.email,
+    };
+
+    await resetPassword(data);
+    setLoading(false);
+  };
 
   return (
     <div className=" bg-primary  text-white  py-6 z-40">
@@ -70,10 +83,23 @@ export default function Navbar() {
               {user.user.userId && (
                 <a
                   href="/settings"
-                  className="py-2 px-4 flex items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
+                  className="py-2 px-4  flex items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
                 >
                   <IoSettingsOutline /> Settings
                 </a>
+              )}
+              {user.user.userId && (
+                <button
+                  onClick={handleResetPassword}
+                  className="py-2 px-4 flex whitespace-nowrap items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
+                >
+                  {loading ? (
+                    <FaSpinner className="animate-spin" />
+                  ) : (
+                    <IoSettingsOutline />
+                  )}
+                  Reset Password
+                </button>
               )}
             </div>
           </div>
