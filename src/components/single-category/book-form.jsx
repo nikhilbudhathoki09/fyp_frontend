@@ -57,6 +57,7 @@ export default function BookForm({
     close();
     setLoading(false);
   };
+  console.log(serviceId, providerId, serviceId);
 
   return (
     <div>

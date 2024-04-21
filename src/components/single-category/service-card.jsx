@@ -22,8 +22,6 @@ export default function ServiceCard({
   const user = useSelector((state) => state.user);
   let [isOpen, setIsOpen] = useState(false);
 
-  console.log(id);
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -78,7 +76,7 @@ export default function ServiceCard({
       </p>
       <div
         className={cn(
-          "flex ",
+          "flex w-full",
           isProviderProfile ? "justify-center items-center" : "justify-between"
         )}
       >
@@ -87,26 +85,35 @@ export default function ServiceCard({
             asLink
             link={`/providers/${provider.providerId}`}
             text="View Profile"
-            className="px-8 py-3 bg-button rounded-full text-white"
+            className="px-8 w-full py-3 bg-button rounded-full text-white"
             icon={<FiExternalLink />}
           />
         )}
-        <Button
-          text="Book Now"
-          className="px-8 py-3  bg-button rounded-full text-white"
-          icon={<FaArrowRight />}
-          onClick={openModal}
-        />
+
+        {user !== null &&
+          user.user !== null &&
+          user.user.userId === provider.providerId && (
+            <Button
+              text="Book Now"
+              className="px-8 py-3  bg-button rounded-full text-white"
+              icon={<FaArrowRight />}
+              onClick={openModal}
+            />
+          )}
       </div>
 
-      <BookForm
-        isOpen={isOpen}
-        closeModal={closeModal}
-        providerId={provider.providerId}
-        userId={user.user.userId}
-        serviceId={id}
-        close={closeModal}
-      />
+      {user !== null &&
+        user.user !== null &&
+        user.user.userId === provider.providerId && (
+          <BookForm
+            isOpen={isOpen}
+            closeModal={closeModal}
+            providerId={provider.providerId}
+            userId={user.user.userId}
+            serviceId={id}
+            close={closeModal}
+          />
+        )}
     </div>
   );
 }
