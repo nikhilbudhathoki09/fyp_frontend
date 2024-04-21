@@ -1,19 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import React, { Fragment } from "react";
-import { useForm } from "react-hook-form";
-import { FaSpinner } from "react-icons/fa";
-import * as yup from "yup";
-import PropTypes from "prop-types";
 import { Select } from "@mantine/core";
-import Input from "../ui/input";
-import Button from "../ui/button";
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
+import { FaSpinner } from "react-icons/fa";
 import { cn } from "../../utils/utils";
-
-const schema = yup.object().shape({
-  description: yup.string().required("Description is required"),
-  rating: yup.number().required("Rating is required"),
-});
+import Button from "../ui/button";
+import Input from "../ui/input";
+import giveFeedBack from "../../services/user/give-feedback";
 
 export default function GiveFeedbackform({
   isOpen,
@@ -22,15 +15,20 @@ export default function GiveFeedbackform({
   userId,
 }) {
   const [loading, setLoading] = React.useState(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "all",
-  });
+  const [selectedRating, setSelectedRating] = React.useState(0);
+  const [description, setDescription] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const data = {
+      rating: selectedRating,
+      comment: description,
+    };
+    await giveFeedBack(data, userId, providerId);
+    setLoading(false);
+  };
+
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -61,16 +59,23 @@ export default function GiveFeedbackform({
                 <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <h1>Appionments informations</h1>
 
-                  <Select
-                    data={["1", "2", "3", "4", "5"]}
-                    className={"px-2 py-3  text-base font-light"}
-                    id={"arrivalTime"}
-                  />
-                  <Input
+                  <select
+                    name="rating"
+                    id="rating"
+                    className="px-4 py-3 w-full bg-gray-100 rounded-lg mt-2"
+                    onChange={(e) => setSelectedRating(e.target.value)}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <input
                     type="text"
-                    className={"px-4 py-3"}
-                    placeholder={"Description"}
-                    id={"description"}
+                    placeholder="Description"
+                    className="px-4 py-3 w-full bg-gray-100 rounded-lg mt-2"
+                    onChange={(e) => setDescription(e.target.value)}
                   />
 
                   <Button
@@ -84,6 +89,7 @@ export default function GiveFeedbackform({
                         )}
                       />
                     }
+                    onClick={handleSubmit}
                     loading={loading}
                     className="flex w-full justify-center bg-black rounded-lg p-3 text-white"
                   />
@@ -101,6 +107,5 @@ GiveFeedbackform.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   userId: PropTypes.number,
-
   providerId: PropTypes.number,
 };

@@ -18,7 +18,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getUserAppointments(user?.user?.id || 1);
+      const res = await getUserAppointments(user?.user?.userId || 1);
       setPendingAppointments(res.filter((item) => item.status === "PENDING"));
       setRejectedAppointments(res.filter((item) => item.status === "REJECTED"));
       setSelectedAppointments(res.filter((item) => item.status === "ACCEPTED"));
