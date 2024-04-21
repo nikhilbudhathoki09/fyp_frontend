@@ -65,7 +65,7 @@ export default function ServiceProviderPage() {
         {selectedTab === "services" && (
           <ProviderServices
             services={data?.allServices || []}
-            provider={data?.categories?.allProviders?.[0] || {}}
+            provider={data}
           />
         )}
         {selectedTab === "overview" && (
