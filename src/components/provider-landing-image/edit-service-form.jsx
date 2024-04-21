@@ -24,10 +24,10 @@ const schema = yup.object().shape({
 export default function EditServiceForm({
   isOpen,
   closeModal,
-  serviceId,
-  serviceName,
+
+  service,
 }) {
-  console.log(serviceId);
+  console.log(service);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -50,7 +50,7 @@ export default function EditServiceForm({
   const onSubmit = async (data) => {
     console.log(data);
     setLoading(true);
-    await editService(data, serviceId);
+    await editService(data, service.serviceId);
     setLoading(false);
   };
 
@@ -85,7 +85,7 @@ export default function EditServiceForm({
             >
               <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <h1 className="text-2xl font-semibold">
-                  Edit service {serviceName}
+                  Edit service {service?.serviceName || "N/A"}
                 </h1>
                 <hr />
                 <Input
@@ -93,6 +93,7 @@ export default function EditServiceForm({
                   className={"px-4 py-3"}
                   placeholder={"Service Name"}
                   id={"serviceName"}
+                  defaultValue={service.serviceName}
                   register={register}
                   error={errors.categoryName?.message}
                 />
@@ -102,6 +103,7 @@ export default function EditServiceForm({
                   placeholder={"Per Hour Price   Rs/hr"}
                   id={"perHourRate"}
                   register={register}
+                  defaultValue={service.perHourRate}
                   error={errors.perHourRate?.message}
                 />
 
@@ -110,6 +112,7 @@ export default function EditServiceForm({
                   {...(register && {
                     ...register("categoryName"),
                   })}
+                  defaultValue={service.categoryName}
                 >
                   {categories.map((item) => (
                     <option key={item.id} value={item.title}>
@@ -120,13 +123,15 @@ export default function EditServiceForm({
 
                 <Input
                   type="text"
-                  className={"px-4 py-3"}
+                  className={"px-4 py-3 pb-3"}
                   id={"description"}
+                  defaultValue={service?.description || "N/A"}
                   register={register}
                   error={errors.detailedLocation?.message}
                   placeholder={"Description"}
                 />
-                <span>Service Image</span>
+                <br />
+                <span>Change Service Image</span>
                 <Input
                   type="file"
                   id="serviceImage"
@@ -157,6 +162,5 @@ export default function EditServiceForm({
 EditServiceForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  serviceId: PropTypes.number,
-  serviceName: PropTypes.string,
+  service: PropTypes.object,
 };

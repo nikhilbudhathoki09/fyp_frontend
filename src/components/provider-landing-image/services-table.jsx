@@ -71,8 +71,7 @@ export default function ServicesTable({ allServices }) {
       <EditServiceForm
         closeModal={closeModal}
         isOpen={modalOpen}
-        serviceId={selectedService.id}
-        serviceName={selectedService.serviceName}
+        service={selectedService}
       />
     </div>
   );
