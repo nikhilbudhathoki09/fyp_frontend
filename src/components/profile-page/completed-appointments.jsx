@@ -17,12 +17,12 @@ export default function CompletedAppointments({ completedAppointments }) {
     <div className="flex w-full flex-col border-2 border-green-400 rounded-md p-4">
       <p className="uppercase font-bold text-green-400">Completed</p>
       <br />
-      <div className="grid grid-cols-3 items-center gap-5 ">
+      <div className="grid grid-cols-3 items-stretch gap-5 ">
         {completedAppointments !== null &&
         completedAppointments?.length !== 0 ? (
           completedAppointments?.map((data, index) => (
             <div
-              className="flex flex-col gap-4 shadow-md bg-white p-6 border-transparent border hover:border-yellow-400 transition-all duration-300 rounded-md"
+              className="flex flex-col justify-between gap-4 shadow-md bg-white p-6 border-transparent border hover:border-yellow-400 transition-all duration-300 rounded-md"
               key={index}
             >
               <p className="text-xl font-semibold pb-2 border-b border-b-yellow-400">
