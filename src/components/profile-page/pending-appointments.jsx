@@ -1,22 +1,20 @@
-import React from "react";
 import { ImCross } from "react-icons/im";
-import Button from "../ui/button";
 import PropTypes from "prop-types";
+import Button from "../ui/button";
 
-export default function RejectedAppointments({ rejectedAppointments }) {
+export default function PendingAppointments({ pendingAppointments }) {
   return (
-    <div className="flex flex-col w-full border-2 border-red-500 rounded-md p-4">
-      <p className="uppercase font-bold text-red-500">Rejected</p>
+    <div className="flex w-full flex-col border-2 border-yellow-400 rounded-md p-4">
+      <p className="uppercase font-bold text-yellow-400">Pending</p>
       <br />
-
       <div className="grid grid-cols-2 items-center gap-5 ">
-        {rejectedAppointments.length !== 0 ? (
-          rejectedAppointments.map((data, index) => (
+        {pendingAppointments?.length !== 0 ? (
+          pendingAppointments?.map((data, index) => (
             <div
-              className="flex flex-col gap-4 shadow-md bg-white p-8 border-transparent border hover:border-red-500 transition-all duration-300 rounded-md"
+              className="flex flex-col gap-4 shadow-md bg-white p-6 border-transparent border hover:border-yellow-400 transition-all duration-300 rounded-md"
               key={index}
             >
-              <p className="text-xl font-semibold pb-2 border-b border-b-red-500">
+              <p className="text-xl font-semibold pb-2 border-b border-b-yellow-400">
                 Appointment: {data.appointmentId}
               </p>
               <p className="text-sm">
@@ -27,9 +25,9 @@ export default function RejectedAppointments({ rejectedAppointments }) {
                   day: "numeric",
                 })}
               </p>
-              <p className="text-sm">Time: {data.arrivalTime} </p>
-              <p>{data.description}</p>
 
+              <p className="text-sm">Arrival Time : {data.arrivalTime}</p>
+              <p>{data.description}</p>
               <Button
                 className="bg-red-500 p-2 pl-5 text-white hover:bg-red-800 transition-all duration-300 flex items-center rounded-md"
                 text="Cancel Appointment"
@@ -45,6 +43,6 @@ export default function RejectedAppointments({ rejectedAppointments }) {
   );
 }
 
-RejectedAppointments.prototype = {
-  rejectedAppointments: PropTypes.array,
+PendingAppointments.propTypes = {
+  pendingAppointments: PropTypes.array,
 };

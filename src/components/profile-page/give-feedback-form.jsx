@@ -1,36 +1,27 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import PropTypes from "prop-types";
-import { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import * as yup from "yup";
-import appointProvider from "../../services/appointment/appoint-provider";
-import { generateTimeOptions } from "../../utils/get-time-options";
-import { cn } from "../../utils/utils";
-import BookFormImageInput from "../ui/book-form-image-input";
-import Button from "../ui/button";
+import PropTypes from "prop-types";
+import { Select } from "@mantine/core";
 import Input from "../ui/input";
-import Select from "../ui/select";
+import Button from "../ui/button";
+import { cn } from "../../utils/utils";
 
 const schema = yup.object().shape({
   description: yup.string().required("Description is required"),
-  detailedLocation: yup.string().required("Location is required"),
-  arrivalDate: yup.date().required("Date is required"),
-  arrivalTime: yup.string().required("Time is required"),
-  appointmentImage: yup.mixed(),
+  rating: yup.number().required("Rating is required"),
 });
 
-export default function BookForm({
+export default function GiveFeedbackform({
   isOpen,
   closeModal,
-  userId,
-  serviceId,
   providerId,
-  close,
+  userId,
 }) {
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = React.useState(false);
   const {
     register,
     handleSubmit,
@@ -40,24 +31,6 @@ export default function BookForm({
     resolver: yupResolver(schema),
     mode: "all",
   });
-
-  const onSubmit = async (formData) => {
-    setLoading(true);
-
-    const formattedDate = new Date(formData.arrivalDate)
-      .toISOString()
-      .split("T")[0];
-
-    await appointProvider({
-      data: { ...formData, arrivalDate: formattedDate },
-      userId: userId,
-      providerId: providerId,
-      serviceId: serviceId,
-    });
-    close();
-    setLoading(false);
-  };
-
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -75,10 +48,7 @@ export default function BookForm({
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <form
-              className="flex min-h-full items-center justify-center p-4 text-center"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -92,38 +62,16 @@ export default function BookForm({
                   <h1>Appionments informations</h1>
 
                   <Select
-                    options={generateTimeOptions()}
+                    data={["1", "2", "3", "4", "5"]}
                     className={"px-2 py-3  text-base font-light"}
                     id={"arrivalTime"}
-                    register={register}
-                    error={errors.arrivalTime?.message}
                   />
                   <Input
                     type="text"
                     className={"px-4 py-3"}
                     placeholder={"Description"}
                     id={"description"}
-                    register={register}
-                    error={errors.description?.message}
                   />
-                  <Input
-                    type="text"
-                    className={"px-4 py-3"}
-                    id={"detailedLocation"}
-                    register={register}
-                    error={errors.detailedLocation?.message}
-                    placeholder={"Location"}
-                  />
-
-                  <Input
-                    type="date"
-                    className={"px-4 py-3"}
-                    placeholder={"Name"}
-                    id={"arrivalDate"}
-                    register={register}
-                    error={errors.arrivalDate?.message}
-                  />
-                  <BookFormImageInput register={register} image={watch("")} />
 
                   <Button
                     text="Request Now"
@@ -149,13 +97,10 @@ export default function BookForm({
   );
 }
 
-BookForm.propTypes = {
+GiveFeedbackform.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   userId: PropTypes.number,
-  serviceId: PropTypes.number,
-  serviceName: PropTypes.string,
-  providerName: PropTypes.string,
+
   providerId: PropTypes.number,
-  close: PropTypes.func,
 };
