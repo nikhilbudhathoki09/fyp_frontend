@@ -2,6 +2,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import Button from "../../components/ui/button";
 import { TOKEN_KEY, USER_KEY } from "../../utils/constants";
 import { useSelector } from "react-redux";
+import { IoSettingsOutline } from "react-icons/io5";
 
 export default function Navbar() {
   const user = useSelector((state) => state.user);
@@ -11,6 +12,8 @@ export default function Navbar() {
     localStorage.removeItem(USER_KEY);
     window.location.replace("/login");
   };
+
+  console.log(user);
 
   return (
     <div className=" bg-primary  text-white  py-6 z-40">
@@ -48,19 +51,30 @@ export default function Navbar() {
             </div>
             <div className="absolute border flex items-stretch gap-3 flex-col opacity-0 group-hover:opacity-100 transition-all duration-300 top-14 p-2 rounded-md right-3">
               <button
-                className="py-2 px-4  flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md  bg-primary"
+                className="py-2 px-4  flex items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
                 onClick={handleLogout}
               >
                 <AiOutlineLogout />
                 Logout
               </button>
-              {/* <a
-                href="/profile"
-                className="py-2 px-4 flex items-center gap-3 border hover:bg-white-bg hover:text-primary rounded-md  bg-primary"
-              >
-                <FaUserAlt />
-                Profile
-              </a> */}
+
+              {user.user.providerId && (
+                <a
+                  href={`/provider-landing/${user.user.providerId}`}
+                  className="py-2 px-4  flex items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
+                >
+                  <IoSettingsOutline />
+                  Dashboard
+                </a>
+              )}
+              {user.user.userId && (
+                <a
+                  href="/settings"
+                  className="py-2 px-4 flex items-center gap-3 shadow-lg  bg-white-bg  rounded-md text-black "
+                >
+                  <IoSettingsOutline /> Settings
+                </a>
+              )}
             </div>
           </div>
         ) : (

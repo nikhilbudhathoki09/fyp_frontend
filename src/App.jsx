@@ -14,6 +14,7 @@ import ProfilePage from "./layout/profile-page";
 import ProviderLandingPage from "./layout/provider-landing-page";
 import ProviderRegister from "./layout/provider-register/provider-register";
 import ProviderLogin from "./layout/login/provider-login";
+import UserSettingsPage from "./layout/settings-user";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/become-a-professional" element={<ProviderRegister />} />
 
           <Route path="/category/:categoryId" element={<CategoryPage />} />
+          <Route path="/settings" element={<UserSettingsPage />} />
           <Route
             path="/providers/:providerId"
             element={<ServiceProviderPage />}

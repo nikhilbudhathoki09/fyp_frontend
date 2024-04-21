@@ -24,17 +24,17 @@ export default function CategoriesSectionHome() {
           services?.map((data, i) => (
             <a href={`/category/${data.id}`} key={i} className="group">
               <div className="p-2 flex gap-2  font-semibold items-center justify-center flex-col">
-                <div className="p-7 rounded-full  bg-white">
+                <div className="p-2 rounded-full  bg-white">
                   {data.categoryImage ? (
                     <img
                       src={data.categoryImage}
-                      className="w-9 h-9"
+                      className="w-20 h-20 rounded-full object-contain bg-black"
                       alt="category"
                     />
                   ) : (
                     <MdPlumbing
                       className="text-primary group-hover:scale-110"
-                      size={35}
+                      size={60}
                     />
                   )}
                 </div>
