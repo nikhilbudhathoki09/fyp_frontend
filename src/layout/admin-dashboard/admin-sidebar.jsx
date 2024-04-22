@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import { BiSolidDashboard } from "react-icons/bi";
-import { FaUserAlt } from "react-icons/fa";
-import { GiAutoRepair } from "react-icons/gi";
+import { FaLocationArrow, FaUserAlt, FaUserAstronaut } from "react-icons/fa";
 import { GrFormAdd } from "react-icons/gr";
-import { RiReservedFill } from "react-icons/ri";
 import { cn } from "../../utils/utils";
 
 const data = [
@@ -15,7 +13,7 @@ const data = [
   {
     key: "Providers",
     value: "Providers",
-    icon: <GiAutoRepair />,
+    icon: <FaUserAstronaut />,
   },
   {
     key: "Users",
@@ -25,7 +23,7 @@ const data = [
   {
     key: "Location",
     value: "Location",
-    icon: <RiReservedFill />,
+    icon: <FaLocationArrow />,
   },
   {
     key: "Category",

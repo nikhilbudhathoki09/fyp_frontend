@@ -6,20 +6,34 @@ import { Fragment, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import Button from "../../components/ui/button";
 import { cn } from "../../utils/utils";
-import editLocation from "../../services/admin/edit-location";
+import Input from "../../components/ui/input";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import addCategory from "../../services/category/add-category";
 
-export default function EditLocation({ isOpen, closeModal, location }) {
+const schema = yup.object().shape({
+  title: yup.string().required("Service name is required"),
+  description: yup.string().required("Description is required"),
+  categoryImage: yup.mixed(),
+});
+
+export default function AddCategory({ isOpen, closeModal }) {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
 
-  const handleEditClick = async () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+  });
+
+  const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
-    const data = {
-      name: name,
-      description: description,
-    };
-    await editLocation(data, location.id);
+    await addCategory(data);
     setLoading(false);
   };
 
@@ -39,7 +53,10 @@ export default function EditLocation({ isOpen, closeModal, location }) {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <form
+            className="flex min-h-full items-center justify-center p-4 text-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -50,27 +67,36 @@ export default function EditLocation({ isOpen, closeModal, location }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h1 className="text-2xl font-semibold">Edit Location</h1>
+                <h1 className="text-2xl font-semibold">Add Location</h1>
                 <hr />
-
-                <input
-                  className="w-full p-2 border-2 border-gray-300 rounded-lg mt-2"
+                <Input
                   type="text"
-                  placeholder="Name"
-                  defaultValue={location.name}
-                  onChange={(e) => setName(e.target.value)}
+                  className={"px-4 py-3"}
+                  placeholder={"Service Name"}
+                  id={"title"}
+                  register={register}
+                  error={errors.title?.message}
                 />
-                <textarea
+                <Input
                   type="text"
-                  defaultValue={location.description}
-                  className="w-full p-2 h-36 border-2 border-gray-300 rounded-lg mt-2"
-                  placeholder="Description"
-                  onChange={(e) => setDescription(e.target.value)}
+                  className={"px-4 py-3"}
+                  id={"description"}
+                  register={register}
+                  error={errors.description?.message}
+                  placeholder={"Description"}
+                />
+                <span>Service Image</span>
+                <Input
+                  type="file"
+                  id="categoryImage"
+                  register={register}
+                  placeholder={"Category Image"}
+                  error={errors.categoryImage?.message}
                 />
 
                 <Button
-                  text={"Edit Location"}
-                  onClick={handleEditClick}
+                  type={"submit"}
+                  text={"Add Category"}
                   icon={
                     <FaSpinner
                       className={cn(loading && "block animate-spin", "hidden")}
@@ -81,15 +107,14 @@ export default function EditLocation({ isOpen, closeModal, location }) {
                 />
               </Dialog.Panel>
             </Transition.Child>
-          </div>
+          </form>
         </div>
       </Dialog>
     </Transition>
   );
 }
 
-EditLocation.propTypes = {
+AddCategory.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  location: PropTypes.object,
 };

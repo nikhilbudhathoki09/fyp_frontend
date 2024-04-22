@@ -1,27 +1,47 @@
 // import React from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import { Fragment, useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
+import * as yup from "yup";
+import Input from "../../components/ui/input";
 import Button from "../../components/ui/button";
 import { cn } from "../../utils/utils";
-import editLocation from "../../services/admin/edit-location";
+import editCategory from "../../services/category/edit-category";
 
-export default function EditLocation({ isOpen, closeModal, location }) {
+const schema = yup.object().shape({
+  title: yup.string(),
+  description: yup.string(),
+  categoryImage: yup.mixed(),
+});
+export default function EditCategoryForm({
+  isOpen,
+  closeModal,
+
+  category,
+}) {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
 
-  const handleEditClick = async () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+  });
+
+  const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
-    const data = {
-      name: name,
-      description: description,
-    };
-    await editLocation(data, location.id);
+    await editCategory(data, category.id);
     setLoading(false);
   };
+
+  console.log(category);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -39,7 +59,10 @@ export default function EditLocation({ isOpen, closeModal, location }) {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <form
+            className="flex min-h-full items-center justify-center p-4 text-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -50,27 +73,39 @@ export default function EditLocation({ isOpen, closeModal, location }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h1 className="text-2xl font-semibold">Edit Location</h1>
+                <h1 className="text-2xl font-semibold">Edit Category</h1>
                 <hr />
-
-                <input
-                  className="w-full p-2 border-2 border-gray-300 rounded-lg mt-2"
+                <Input
                   type="text"
-                  placeholder="Name"
-                  defaultValue={location.name}
-                  onChange={(e) => setName(e.target.value)}
+                  className={"px-4 py-3"}
+                  placeholder={"Category Name"}
+                  id={"title"}
+                  defaultValue={category.title}
+                  register={register}
+                  error={errors.title?.message}
                 />
-                <textarea
+                <Input
                   type="text"
-                  defaultValue={location.description}
-                  className="w-full p-2 h-36 border-2 border-gray-300 rounded-lg mt-2"
-                  placeholder="Description"
-                  onChange={(e) => setDescription(e.target.value)}
+                  className={"px-4 py-3"}
+                  id={"description"}
+                  defaultValue={category.description}
+                  register={register}
+                  error={errors.description?.message}
+                  placeholder={"Description"}
+                />
+                <br />
+                <span>Category Image</span>
+                <Input
+                  type="file"
+                  id="categoryImage"
+                  register={register}
+                  placeholder={"Category Image"}
+                  error={errors.categoryImage?.message}
                 />
 
                 <Button
-                  text={"Edit Location"}
-                  onClick={handleEditClick}
+                  type={"submit"}
+                  text={"Edit Category"}
                   icon={
                     <FaSpinner
                       className={cn(loading && "block animate-spin", "hidden")}
@@ -81,15 +116,15 @@ export default function EditLocation({ isOpen, closeModal, location }) {
                 />
               </Dialog.Panel>
             </Transition.Child>
-          </div>
+          </form>
         </div>
       </Dialog>
     </Transition>
   );
 }
 
-EditLocation.propTypes = {
+EditCategoryForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  location: PropTypes.object,
+  category: PropTypes.object,
 };

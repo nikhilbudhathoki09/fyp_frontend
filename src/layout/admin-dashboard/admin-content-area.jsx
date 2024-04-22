@@ -7,11 +7,14 @@ import ProvidersTable from "./providers-table";
 import UsersTable from "./users-table";
 import getAllUsers from "../../services/admin/get-all-users";
 import getAllLocations from "../../services/locations/get-all-locations";
+import CategoryTable from "./category-table";
+import getAllCategory from "../../services/category/get-all-category";
 
 export default function AdminContentArea({ selectedTab = "Dashboard" }) {
   const [providers, setProviders] = useState([]);
   const [users, setUsers] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchProvider = async () => {
       const data = await getAllProviders();
@@ -25,7 +28,12 @@ export default function AdminContentArea({ selectedTab = "Dashboard" }) {
       const data = await getAllLocations();
       setLocations(data);
     };
+    const fetchAllCategories = async () => {
+      const data = await getAllCategory();
+      setCategories(data);
+    };
     fetchProvider();
+    fetchAllCategories();
     fetchUsers();
     fetchAllLocations();
   }, []);
@@ -36,15 +44,7 @@ export default function AdminContentArea({ selectedTab = "Dashboard" }) {
       {selectedTab === "Providers" && <ProvidersTable providers={providers} />}
       {selectedTab === "Users" && <UsersTable users={users} />}
       {selectedTab === "Location" && <LocationTable locations={locations} />}
-      {selectedTab === "Category" && <div>Category</div>}
-      {/* {selectedTab === "services" && (
-        <ServicesTable allServices={data.allServices} />
-      )}
-      {selectedTab === "Add Service" && <AddService />}
-      {selectedTab === "Appooitments" && (
-        <AppointmentsTable appointments={appooitments} />
-      )}
-      {selectedTab === "settings" && <Settings />} */}
+      {selectedTab === "Category" && <CategoryTable categories={categories} />}
     </div>
   );
 }
