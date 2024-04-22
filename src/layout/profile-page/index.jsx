@@ -28,7 +28,7 @@ export default function ProfilePage() {
     };
 
     fetchData();
-  }, [user?.user?.id]);
+  }, [user?.user?.userId]);
   return (
     <div className="layout space-y-8 py-8 w-full">
       <p className="text-2xl font-semibold">Your Appointments</p>

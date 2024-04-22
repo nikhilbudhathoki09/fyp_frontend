@@ -1,8 +1,17 @@
-import Button from "../ui/button";
-import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
+import cancelAppointment from "../../services/appointment/cancel-appointment";
+import Button from "../ui/button";
 
 export default function SelectedAppointments({ selectedAppointments }) {
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async (appointmentId) => {
+    setLoading(true);
+    await cancelAppointment(appointmentId);
+    setLoading(false);
+  };
   return (
     <div className="flex w-full flex-col border-2 border-green-400 rounded-md p-4">
       <p className="uppercase font-bold text-green-400">APPROVED</p>
@@ -29,9 +38,10 @@ export default function SelectedAppointments({ selectedAppointments }) {
               <p className="text-sm">Arrival Time : {data.arrivalTime}</p>
               <p>{data.description}</p>
               <Button
+                onClick={() => handleClick(data.appointmentId)}
                 className="bg-red-500 p-2 pl-5 text-white hover:bg-red-800 transition-all duration-300 flex items-center rounded-md"
                 text="Cancel Appointment"
-                icon={<ImCross />}
+                icon={loading && <FaSpinner className="animate-spin" />}
               />
             </div>
           ))

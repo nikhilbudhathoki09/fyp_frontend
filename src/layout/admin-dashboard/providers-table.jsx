@@ -12,6 +12,7 @@ export default function ProvidersTable({ providers }) {
   function closeModal() {
     setModalOpen(false);
   }
+  console.log(providers);
 
   const rows = providers?.map((element) => (
     <Table.Tr key={element.providerId} className="text-base">
@@ -32,15 +33,22 @@ export default function ProvidersTable({ providers }) {
 
       <Table.Td>
         {/* <div className="flex p-2  rounded-md text-sm text-white items-center justify-center"> */}
-        {element.verified ? (
-          <div className="flex px-2 py-1 rounded-full items-center justify-center text-white bg-blue-600">
-            verified
-          </div>
-        ) : (
-          <div className="flex px-2 py-1 rounded-full items-center justify-center text-white bg-red-600">
-            Unverified
+        {element.status === "APPROVED" && (
+          <div className="flex uppercase px-4 py-1 rounded-full items-center justify-center text-white bg-blue-600">
+            APproved
           </div>
         )}
+        {element.status === "PENDING" && (
+          <div className="flex uppercase px-4 py-1 rounded-full items-center justify-center text-white bg-yellow-600">
+            Pending
+          </div>
+        )}
+        {element.status === "REJECTED" && (
+          <div className="flex uppercase px-4 py-1 rounded-full items-center justify-center text-white bg-yellow-600">
+            Pending
+          </div>
+        )}
+
         {/* </div> */}
       </Table.Td>
       <Table.Td>
