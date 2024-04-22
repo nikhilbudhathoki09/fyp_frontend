@@ -16,6 +16,7 @@ import ProviderRegister from "./layout/provider-register/provider-register";
 import ProviderLogin from "./layout/login/provider-login";
 import UserSettingsPage from "./layout/settings-user";
 import ResetPassword from "./layout/reset-password";
+import AdminDashboard from "./layout/admin-dashboard";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             path="/provider-landing/:providerId"
             element={<ProviderLandingPage />}
           />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
       </Router>
       <Footer />
