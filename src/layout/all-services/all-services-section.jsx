@@ -34,9 +34,7 @@ export default function AllServicesSection() {
         {Array.isArray(services) && services.length !== 0 ? (
           services.map((service) => (
             <ServiceCard
-              serviceImage={
-                service.category.allServices[0].serviceImage || "/bg.png"
-              }
+              serviceImage={service?.serviceImage || "/bg.png"}
               rate={service.perHourRate}
               key={service.description}
               id={service.id}

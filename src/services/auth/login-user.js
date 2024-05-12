@@ -22,11 +22,11 @@ export default async function loginUser(data) {
 
     localStorage.setItem(TOKEN_KEY, json.access_token);
     localStorage.setItem(USER_KEY, JSON.stringify(json.user));
-    console.log(json);
 
     document.cookie = `token=${json.access_token}`;
 
-    window.location.href = "/";
+    let route = json.admin ? "/admin-dashboard" : "/";
+    window.location.href = route;
 
     toast.success("Logged in successfully");
   } catch (err) {

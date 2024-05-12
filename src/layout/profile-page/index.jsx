@@ -21,6 +21,11 @@ export default function ProfilePage() {
       const res = await getUserAppointments(user?.user?.userId || 1);
       setPendingAppointments(res.filter((item) => item.status === "PENDING"));
       setRejectedAppointments(res.filter((item) => item.status === "REJECTED"));
+      setRejectedAppointments((prev) => [
+        ...prev,
+        ...res.filter((item) => item.status === "CANCELLED"),
+      ]);
+
       setSelectedAppointments(res.filter((item) => item.status === "ACCEPTED"));
       setCompletedAppointments(
         res.filter((item) => item.status === "COMPLETED")

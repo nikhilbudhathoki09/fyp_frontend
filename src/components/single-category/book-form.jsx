@@ -116,6 +116,7 @@ export default function BookForm({
                   />
 
                   <Input
+                    min={new Date().toISOString().split("T")[0]}
                     type="date"
                     className={"px-4 py-3"}
                     placeholder={"Name"}

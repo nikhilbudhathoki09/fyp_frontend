@@ -26,11 +26,10 @@ export default async function appointProvider({
     const json = await res.json();
 
     if (!res.ok) {
-      toast.error(json.message);
-    } else {
-      toast.success("Appointment created successfully");
-      return json;
+      return toast.error(json.message);
     }
+    window.location.href = json.payment_url;
+    return toast.success("Appointment created successfully");
   } catch (err) {
     toast.error(err.message);
   }
