@@ -115,6 +115,7 @@ export default function UserSettings() {
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
             ]}
+            defaultValue={user.user.gender}
             icon={<IoMaleFemaleSharp className="text-xl text-primary" />}
             placeholder="Select Gender"
             register={register}
