@@ -1,5 +1,6 @@
 // import { TRegisterForm } from "#/components/login/register-form";
 import { toast } from "react-hot-toast";
+import savePayment from "../save-payment";
 
 export default async function appointProvider({
   userId,
@@ -29,6 +30,7 @@ export default async function appointProvider({
       return toast.error(json.message);
     }
     window.location.href = json.payment_url;
+    await savePayment({ pidx: json.pidx, appointmentId: json.appointmentId });
     return toast.success("Appointment created successfully");
   } catch (err) {
     toast.error(err.message);

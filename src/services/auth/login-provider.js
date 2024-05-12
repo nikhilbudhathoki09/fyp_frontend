@@ -16,6 +16,7 @@ export default async function loginProvider(data) {
     );
 
     const json = await res.json();
+    console.log(json);
 
     if (!res.ok) {
       toast.error(json.message);

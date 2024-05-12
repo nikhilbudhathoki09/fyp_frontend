@@ -1,14 +1,9 @@
 import PropTypes from "prop-types";
-import { BiSolidCategoryAlt, BiSolidDashboard } from "react-icons/bi";
+import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaLocationArrow, FaUserAlt, FaUserAstronaut } from "react-icons/fa";
 import { cn } from "../../utils/utils";
 
 const data = [
-  {
-    key: "Dashboard",
-    value: "Dashboard",
-    icon: <BiSolidDashboard />,
-  },
   {
     key: "Providers",
     value: "Providers",

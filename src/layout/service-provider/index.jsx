@@ -78,7 +78,7 @@ export default function ServiceProviderPage() {
       <br />
       <hr />
       <br />
-      <RecommendedProviderSection />
+      <RecommendedProviderSection providerId={providerId} />
       <br />
       <br />
       <br />
