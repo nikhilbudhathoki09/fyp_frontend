@@ -28,6 +28,7 @@ export default function ServiceCard({
   }
 
   function openModal() {
+    console.log("open");
     setIsOpen(true);
   }
 
@@ -61,7 +62,9 @@ export default function ServiceCard({
             )}
           </div>
         )}
-        <div className="border border-green-500 rounded-md p-2">Rs{rate}/hr</div>
+        <div className="border border-green-500 rounded-md p-2">
+          Rs{rate}/hr
+        </div>
       </div>
       <div className="flex flex-row gap-2 items-center">
         <FaPhoneAlt />
@@ -104,18 +107,16 @@ export default function ServiceCard({
         )}
       </div>
 
-      {user !== null &&
-        user.user !== null &&
-        user.user.userId === provider.providerId && (
-          <BookForm
-            isOpen={isOpen}
-            closeModal={closeModal}
-            providerId={provider.providerId}
-            userId={user.user.userId}
-            serviceId={id}
-            close={closeModal}
-          />
-        )}
+      {user !== null && user.user !== null && (
+        <BookForm
+          isOpen={isOpen}
+          closeModal={closeModal}
+          providerId={provider?.providerId || 1}
+          userId={user?.user?.userId || 1}
+          serviceId={id || 1}
+          close={closeModal}
+        />
+      )}
     </div>
   );
 }

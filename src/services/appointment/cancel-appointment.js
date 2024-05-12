@@ -11,9 +11,9 @@ export default async function cancelAppointment(appointmentId) {
     const json = await res.json();
 
     if (!res.ok) {
-      toast.error(json.message);
+      return toast.error(json?.message || "Failed to cancel appointment");
     } else {
-      toast.success("Appointment cancelled successfully");
+      toast.success(json.success || "Appointment cancelled successfully");
       window.location.reload();
       return json;
     }
