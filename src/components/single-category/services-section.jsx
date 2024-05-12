@@ -29,12 +29,12 @@ export default function ServicesSection(services) {
             <ServiceCard
               rate={service?.perHourRate || 0}
               serviceImage={service?.serviceImage || "/bg.png"}
-              key={service.id}
-              id={service.id}
-              serviceDescription={service.description}
-              serviceTitle={service.serviceName}
+              key={service?.id || 1}
+              id={service.id || 1}
+              serviceDescription={service?.description || "asdfg"}
+              serviceTitle={service?.serviceName || "N/A"}
               isProviderProfile={false}
-              provider={services.provider[i]}
+              provider={services.provider[i] || services.provider[i - 1]}
             />
           ))
         ) : (
