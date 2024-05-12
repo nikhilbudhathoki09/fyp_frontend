@@ -37,6 +37,7 @@ export default function AllServicesSection() {
               serviceImage={
                 service.category.allServices[0].serviceImage || "/bg.png"
               }
+              rate={service.perHourRate}
               key={service.description}
               id={service.id}
               serviceDescription={service.description}

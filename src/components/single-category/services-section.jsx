@@ -4,6 +4,7 @@ import ServiceCard from "./service-card";
 import PropTypes from "prop-types";
 
 export default function ServicesSection(services) {
+  console.log(services);
   return (
     <div className="space-y-4">
       <div className="flex justify-between">
@@ -26,6 +27,7 @@ export default function ServicesSection(services) {
         {Array.isArray(services.services) && services.services.length !== 0 ? (
           services.services.map((service, i) => (
             <ServiceCard
+              rate={service?.perHourRate || 0}
               serviceImage={service?.serviceImage || "/bg.png"}
               key={service.id}
               id={service.id}
