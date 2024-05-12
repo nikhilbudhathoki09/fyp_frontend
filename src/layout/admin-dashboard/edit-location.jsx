@@ -10,8 +10,8 @@ import editLocation from "../../services/admin/edit-location";
 
 export default function EditLocation({ isOpen, closeModal, location }) {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState(location.name);
+  const [description, setDescription] = useState(location.description);
 
   const handleEditClick = async () => {
     setLoading(true);
@@ -21,6 +21,7 @@ export default function EditLocation({ isOpen, closeModal, location }) {
     };
     await editLocation(data, location.id);
     setLoading(false);
+    closeModal();
   };
 
   return (

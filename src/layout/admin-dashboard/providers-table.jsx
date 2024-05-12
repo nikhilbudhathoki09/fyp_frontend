@@ -12,7 +12,6 @@ export default function ProvidersTable({ providers }) {
   function closeModal() {
     setModalOpen(false);
   }
-  console.log(providers);
 
   const rows = providers?.map((element) => (
     <Table.Tr key={element.providerId} className="text-base">
@@ -66,7 +65,7 @@ export default function ProvidersTable({ providers }) {
         </div>
       </Table.Td>
       <Table.Td>
-        <a href={`/providers/${element.providerId}`}>
+        <a href={`/admin-provider/${element.providerId}`}>
           <RiExternalLinkLine
             size={30}
             className="text-primary cursor-pointer hover:scale-110 transition-all duration-300"

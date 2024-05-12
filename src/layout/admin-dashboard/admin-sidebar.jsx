@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { BiSolidDashboard } from "react-icons/bi";
+import { BiSolidCategoryAlt, BiSolidDashboard } from "react-icons/bi";
 import { FaLocationArrow, FaUserAlt, FaUserAstronaut } from "react-icons/fa";
-import { GrFormAdd } from "react-icons/gr";
 import { cn } from "../../utils/utils";
 
 const data = [
@@ -28,7 +27,7 @@ const data = [
   {
     key: "Category",
     value: "Category",
-    icon: <GrFormAdd />,
+    icon: <BiSolidCategoryAlt />,
   },
 ];
 

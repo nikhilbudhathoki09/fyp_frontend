@@ -1,12 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Select } from "@mantine/core";
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import { FaSpinner } from "react-icons/fa";
+import giveFeedBack from "../../services/user/give-feedback";
 import { cn } from "../../utils/utils";
 import Button from "../ui/button";
-import Input from "../ui/input";
-import giveFeedBack from "../../services/user/give-feedback";
 
 export default function GiveFeedbackform({
   isOpen,
@@ -58,6 +56,8 @@ export default function GiveFeedbackform({
               >
                 <Dialog.Panel className="w-full space-y-4 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <h1>Appionments informations</h1>
+                  <hr />
+                  <h2>Rating</h2>
 
                   <select
                     name="rating"
