@@ -11,6 +11,7 @@ export default function Input({
   className,
   register,
   error,
+  min,
   defaultValue,
   required,
 }) {
@@ -45,6 +46,7 @@ export default function Input({
           )}
         </span>
         <input
+          min={min}
           type={showPassword ? "text" : type}
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -87,4 +89,5 @@ Input.propTypes = {
   id: PropTypes.string,
   required: PropTypes.bool,
   defaultValue: PropTypes.string,
+  min: PropTypes.string,
 };

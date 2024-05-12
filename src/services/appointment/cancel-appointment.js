@@ -14,6 +14,7 @@ export default async function cancelAppointment(appointmentId) {
       toast.error(json.message);
     } else {
       toast.success("Appointment cancelled successfully");
+      window.location.reload();
       return json;
     }
   } catch (err) {

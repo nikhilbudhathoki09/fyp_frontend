@@ -29,10 +29,17 @@ export default function ResetPasswordForm() {
       setLoading(false);
       return toast.error("Password must be at least 6 characters long");
     }
-    await changePassword({ password: newPassword }, searchValue);
+    await changePassword({
+      data: {
+        newPassword: newPassword,
+      },
+      token: searchValue,
+    });
 
     setLoading(false);
   };
+
+  console.log(newPassword);
 
   return (
     <div className="px-12 py-8 rounded-lg shadow-xl bg-white">
@@ -41,7 +48,7 @@ export default function ResetPasswordForm() {
       </h3>
       <hr />
 
-      <form className={cn("space-y-5 mt-4 mb-2", loading && "blur-sm")}>
+      <div className={cn("space-y-5 mt-4 mb-2", loading && "blur-sm")}>
         <Input
           type="password"
           size="lg"
@@ -57,7 +64,7 @@ export default function ResetPasswordForm() {
           loading={loading}
           className="bg-primary flex justify-center hover:bg-tertiary cursor-pointer w-full py-4 text-center rounded-2xl text-white-bg text-xl"
         />
-      </form>
+      </div>
     </div>
   );
 }
