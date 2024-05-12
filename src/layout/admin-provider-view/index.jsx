@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
+import { MdOutlineMail, MdVerified } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import getSingleProvider from "../../services/service-provider/get-single-provider";
-import { FaLocationDot, FaPhone, FaStarHalfStroke } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa";
-import { MdOutlineMail, MdVerified } from "react-icons/md";
 
 export default function AdminProviderView() {
   const { providerId } = useParams();
@@ -19,14 +18,6 @@ export default function AdminProviderView() {
   }, [providerId]);
 
   console.log(data);
-
-  // enabled: true,
-  // username: 'ashish@aarambhait.com',
-  // authorities: [ { authority: 'ROLE_PROVIDER' } ],
-  // verified: true,
-  // accountNonLocked: true,
-  // accountNonExpired: true,
-  // credentialsNonExpired: true
 
   return (
     <div>
