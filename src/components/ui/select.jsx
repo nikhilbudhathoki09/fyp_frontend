@@ -9,6 +9,7 @@ export default function Select({
   register,
   id,
   error,
+  defaultValue,
 }) {
   return (
     <div>
@@ -17,6 +18,7 @@ export default function Select({
           {icon && icon}
         </div>
         <select
+          defaultValue={defaultValue}
           placeholder={placeholder}
           className={cn(
             "block w-full py-4 px-14 border focus:outline-primary sm:text-sm border-gray-300 rounded-md text-text-color-secondary text-xl",
@@ -27,7 +29,7 @@ export default function Select({
           })}
         >
           {options.map((option, index) => (
-            <option key={index} value={option.value}>
+            <option key={index} value={option.value} defaultValue={defaultValue}>
               {option.label}
             </option>
           ))}
@@ -54,4 +56,5 @@ Select.propTypes = {
   id: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
