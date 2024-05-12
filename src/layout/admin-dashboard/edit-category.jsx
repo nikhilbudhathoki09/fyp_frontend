@@ -39,9 +39,9 @@ export default function EditCategoryForm({
     setLoading(true);
     await editCategory(data, category.id);
     setLoading(false);
+    closeModal();
   };
 
-  console.log(category);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>

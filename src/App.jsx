@@ -17,6 +17,7 @@ import ProviderLogin from "./layout/login/provider-login";
 import UserSettingsPage from "./layout/settings-user";
 import ResetPassword from "./layout/reset-password";
 import AdminDashboard from "./layout/admin-dashboard";
+import AdminProviderView from "./layout/admin-provider-view";
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
           <Route
             path="/providers/:providerId"
             element={<ServiceProviderPage />}
+          />
+          <Route
+            path="/admin-provider/:providerId"
+            element={<AdminProviderView />}
           />
           <Route path="/appointments" element={<ProfilePage />} />
           <Route path="/all-services" element={<AllServicesSection />} />
