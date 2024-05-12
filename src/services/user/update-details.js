@@ -1,4 +1,5 @@
 import { toast } from "react-hot-toast";
+import { USER_KEY } from "../../utils/constants";
 
 export default async function updateUserDetails(data, userId) {
   try {
@@ -23,7 +24,14 @@ export default async function updateUserDetails(data, userId) {
       return;
     }
 
-    toast.success(json.message || "Profile updated successfully");
+    localStorage.removeItem(USER_KEY);
+    localStorage.setItem(USER_KEY, JSON.stringify(json));
+
+    document.cookie = `token=${json.access_token}`;
+
+    window.location.reload();
+
+    return toast.success(json.message || "Profile updated successfully");
   } catch (err) {
     console.log(err);
 

@@ -40,8 +40,6 @@ export default function UserSettings() {
     setLoading(false);
   };
 
-  console.log(user);
-
   return (
     <form
       className={cn("space-y-3", loading && "blur-2xl")}
@@ -62,7 +60,7 @@ export default function UserSettings() {
             className="flex w-full rounded-md border p-4"
             placeholder="Edit Name"
             {...(register && {
-              ...register("providerName"),
+              ...register("name"),
             })}
             defaultValue={user.user.name}
           />
