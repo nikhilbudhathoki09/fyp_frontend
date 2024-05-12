@@ -54,6 +54,7 @@ export default function BookForm({
       providerId: providerId,
       serviceId: serviceId,
     });
+
     close();
     setLoading(false);
   };

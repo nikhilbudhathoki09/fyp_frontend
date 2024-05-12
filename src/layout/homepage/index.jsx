@@ -8,7 +8,6 @@ export default function HomePageSection() {
     <div className="">
       <Banner />
       <CategoriesSectionHome />
-      {/* <RecommendedProviderSection /> */}
       <TestomonialsSection />
       <StatisticsSection />
     </div>

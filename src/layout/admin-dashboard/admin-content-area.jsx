@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import Dashboard from "../../components/provider-landing-image/dashboard";
 import getAllProviders from "../../services/service-provider/get-all-providers";
 import LocationTable from "./location-table";
 import ProvidersTable from "./providers-table";
@@ -40,7 +39,7 @@ export default function AdminContentArea({ selectedTab = "Dashboard" }) {
 
   return (
     <div className="p-3">
-      {selectedTab === "Dashboard" && <Dashboard />}
+      {/* {selectedTab === "Dashboard" && <Dashboard />} */}
       {selectedTab === "Providers" && <ProvidersTable providers={providers} />}
       {selectedTab === "Users" && <UsersTable users={users} />}
       {selectedTab === "Location" && <LocationTable locations={locations} />}

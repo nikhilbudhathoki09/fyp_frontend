@@ -1,7 +1,6 @@
 import { useState } from "react";
-import ContentArea from "../provider-landing-page/content-area";
-import AdminSidebar from "./admin-sidebar";
 import AdminContentArea from "./admin-content-area";
+import AdminSidebar from "./admin-sidebar";
 
 export default function AdminDashboard() {
   const [selectedTab, setSelectedTab] = useState("Dashboard");
