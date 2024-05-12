@@ -18,6 +18,7 @@ export default function ServiceCard({
   serviceDescription,
   provider,
   id,
+  rate,
 }) {
   const user = useSelector((state) => state.user);
   let [isOpen, setIsOpen] = useState(false);
@@ -40,25 +41,28 @@ export default function ServiceCard({
         className="w-[370px] h-52 object-cover rounded-md"
       />
       <h1 className="text-xl font-bold text-start">{serviceTitle || "N/A"}</h1>
-      {!isProviderProfile && (
-        <div className="flex items-center gap-4">
-          <img
-            src={provider?.providerImage || "/nopfp.png"}
-            className="w-16  h-16 border border-green-500 rounded-full object-cover"
-          />
-          {provider && (
-            <div className="flex flex-col">
-              <h1 className="text-base font-semibold">
-                {provider?.providerName || "N/A"}
-              </h1>
-              <p className="text-sm flex items-center gap-1 font-light">
-                <MdOutlineLocationOn color="#7950f2" size={20} />
-                {provider?.address || "N/A"}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+      <div className="flex flex-row items-center w-full  justify-between">
+        {!isProviderProfile && (
+          <div className="flex  items-center gap-4">
+            <img
+              src={provider?.providerImage || "/nopfp.png"}
+              className="w-16  h-16 border border-green-500 rounded-full object-cover"
+            />
+            {provider && (
+              <div className="flex flex-col">
+                <h1 className="text-base font-semibold">
+                  {provider?.providerName || "N/A"}
+                </h1>
+                <p className="text-sm flex items-center gap-1 font-light">
+                  <MdOutlineLocationOn color="#7950f2" size={20} />
+                  {provider?.address || "N/A"}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+        <div className="border border-green-500 rounded-md p-2">Rs{rate}/hr</div>
+      </div>
       <div className="flex flex-row gap-2 items-center">
         <FaPhoneAlt />
         <p>{provider.phoneNumber || "N/A"}</p>| <CgCalendarNext />
@@ -123,4 +127,5 @@ ServiceCard.propTypes = {
   isProviderProfile: PropTypes.bool,
   id: PropTypes.number,
   provider: PropTypes.object,
+  rate: PropTypes.number,
 };

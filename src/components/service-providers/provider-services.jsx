@@ -3,6 +3,7 @@ import ServiceCard from "../single-category/service-card";
 import PropTypes from "prop-types";
 
 export default function ProviderServices(services) {
+  console.log(services);
   return (
     <div>
       <div className="grid grid-cols-3 justify-center items-center gap-3">
@@ -10,6 +11,7 @@ export default function ProviderServices(services) {
           services.services.map((service) => (
             <ServiceCard
               id={service.id}
+              rate={service.perHourRate}
               serviceImage={service.serviceImage}
               key={service.id}
               serviceDescription={service.description}
