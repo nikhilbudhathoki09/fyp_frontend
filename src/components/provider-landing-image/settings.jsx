@@ -65,7 +65,6 @@ export default function Settings() {
     setLoading(false);
   };
 
-  console.log(provider);
 
   return (
     <form

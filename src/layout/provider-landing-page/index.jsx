@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 export default function ProviderLandingPage() {
   const { providerId } = useParams();
-  const [selectedTab, setSelectedTab] = useState("Dashboard");
+  const [selectedTab, setSelectedTab] = useState("services");
   return (
     <div className="layout py-16 w-full ">
       <div className="flex flex-row relative min-h-[100vh] w-full gap-5 ">

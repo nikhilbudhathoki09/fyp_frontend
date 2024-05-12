@@ -16,6 +16,7 @@ export default function EditAppointment({ isOpen, closeModal, appointmentId }) {
     setLoading(true);
     await editAppointment(appointmentId, selectedOption.toLocaleLowerCase());
     setLoading(false);
+    closeModal();
   };
 
   return (
@@ -73,6 +74,19 @@ export default function EditAppointment({ isOpen, closeModal, appointmentId }) {
                   >
                     Cancel
                     {selectedOption === "CANCELLED" && (
+                      <FaCheck className="flex p-1 text-xl absolute -top-3 -right-2 rounded-full border bg-green-500 " />
+                    )}
+                  </div>
+                  <div
+                    className={cn(
+                      "px-4 py-2 relative bg-green-500 uppercase border-2 cursor-pointer border-transparent text-white rounded-md",
+                      selectedOption === "COMPLETED" && " border-black"
+                    )}
+                    //   onClick={() => setSelectedOption("ACCEPTED")}
+                    onClick={() => setSelectedOption("COMPLETED")}
+                  >
+                    Completed
+                    {selectedOption === "COMPLETED" && (
                       <FaCheck className="flex p-1 text-xl absolute -top-3 -right-2 rounded-full border bg-green-500 " />
                     )}
                   </div>

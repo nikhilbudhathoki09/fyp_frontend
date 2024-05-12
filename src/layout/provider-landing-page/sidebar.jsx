@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { BiSolidDashboard } from "react-icons/bi";
 import { GiAutoRepair } from "react-icons/gi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { RiReservedFill } from "react-icons/ri";
@@ -7,11 +6,6 @@ import { GrFormAdd } from "react-icons/gr";
 import { cn } from "../../utils/utils";
 
 const data = [
-  {
-    key: "Dashboard",
-    value: "Dashboard",
-    icon: <BiSolidDashboard />,
-  },
   {
     key: "services",
     value: "Services",
